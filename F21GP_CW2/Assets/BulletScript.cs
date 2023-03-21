@@ -2,22 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class BulletScript : MonoBehaviour
 {
-    // Components used
-    private Rigidbody2D    playerRB;
-    private SpriteRenderer playerRend;
-    // private BoxCollider2D  boxcol;
-    public GameObject  bulletPrefab;
-    public Transform ShootingAim;
-
-    [SerializeField] float speed, shootForce;
-    private float DirX, DirY;
-    private float angle;
-    private string tempColour = "Default", baseColour = "Default", Potion;
-    private Color finalColour;
-    private bool holdingFlask;
-
+    private SpriteRenderer bulletRend;
 
     // Costum Colours Used
     public Color CostumBlue = new Color(0.1921569f, 0.3647059f, 0.9019608f);
@@ -27,115 +14,55 @@ public class Player : MonoBehaviour
     public Color CostumGreen = new Color(0.2156863f, 0.9490197f, 0.0000000f);
     public Color CostumPurple = new Color(0.6823530f, 0.0784314f, 0.9686275f);
 
-    
+    private string tempColour = "Default", baseColour;
+    private Color finalColour;
 
-    // Start is called before the first frame update
+
+    Dictionary<Color, string> ColourDict = new Dictionary<Color, string>()
+    {
+        {new Color(0.1921569f, 0.3647059f, 0.9019608f), "CostumBlue"},
+        {new Color(0.9372550f, 0.2470588f, 0.2509804f), "CostumRed"},
+        {new Color(0.9607844f, 0.8705883f, 0.1960784f), "CostumYellow"},
+        {new Color(0.9058824f, 0.5725490f, 0.1568628f), "CostumOrange"},
+        {new Color(0.2156863f, 0.9490197f, 0.0000000f), "CostumGreen"},
+        {new Color(0.6823530f, 0.0784314f, 0.9686275f), "CostumPurple"},
+        {Color.black, "Default"}
+    };
+
+
     private void Start()
     {
-        // Initialise all components needed...
-        playerRB   = GetComponent<Rigidbody2D>();
-        playerRend = GetComponent<SpriteRenderer>();
-        // boxcol = GetComponent<BoxCollider2D>();
-
-        holdingFlask = false;
+        bulletRend = GetComponent<SpriteRenderer>();
+        baseColour = ColourDict[bulletRend.color];
+        Debug.Log("Bullet Base Colour: " + baseColour);
     }
 
-
-    // Update is called once per frame
     private void Update()
     {
-        // Movement
-        DirX = Input.GetAxis("Horizontal");
-        DirY = Input.GetAxis("Vertical");
-        
-        playerRB.velocity = new Vector2(DirX * speed, DirY * speed);
-
-
-        // Player sprite rotation based on movement
-        if (DirX != 0 || DirY !=0)
-        {
-            angle = Mathf.Atan2(DirY, DirX) * Mathf.Rad2Deg - 90f;
-        }
-        playerRB.rotation = angle;
-
-
         // Handle colour changes
         ColourEval();
-        playerRend.color = finalColour;
-
-
-        // Shooting Colourful bullets
-        if (Input.GetButtonDown("Fire1"))
-            Shoot();
-
-
-        // Potion mechanic
-        if (holdingFlask == true && Input.GetButtonDown("UseItem") && Potion == "Default")
-        {
-            Potion = tempColour;
-            Debug.Log("Potion colour is: " + Potion);
-        }
-        else if (holdingFlask == true && Input.GetButtonDown("UseItem") && Potion!="Default")
-        {
-            baseColour = Potion;
-            Potion = "Default";
-            Debug.Log("Potion colour is: " + Potion);
-        }
-
+        bulletRend.color = finalColour;
     }
 
-
-
-    void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Debug info
-        Debug.Log("Player collied with " + col.gameObject.name + " @ " + Time.time);
-
         // On entering a colour puddle set tempColour to the appropriate colour.
-        if (col.gameObject.name.Contains("BluePuddle"))
+        if (collision.gameObject.name.Contains("BluePuddle"))
             tempColour = "Blue";
-        else if (col.gameObject.name.Contains("RedPuddle"))
+        else if (collision.gameObject.name.Contains("RedPuddle"))
             tempColour = "Red";
-        else if (col.gameObject.name.Contains("YellowPuddle"))
+        else if (collision.gameObject.name.Contains("YellowPuddle"))
             tempColour = "Yellow";
 
-        // Pickup empty flask
-        else if (col.gameObject.name.Contains("Potion"))
-        {
-            holdingFlask = true;
-            Debug.Log("Holding empty flask");
-        }
-
-        else if (col.gameObject.name.Contains("Enemy"))
-        {
-            // Lose health???
-        }
+        else if (!collision.gameObject.name.Contains("Player") && !collision.gameObject.name.Contains("Bullet"))
+            Destroy(gameObject);
     }
-
     void OnTriggerExit2D(Collider2D col)
     {
         // After leaving a colour puddle return tempColour to "default".
         if (col.gameObject.name.Contains("BluePuddle") || col.gameObject.name.Contains("RedPuddle") || col.gameObject.name.Contains("YellowPuddle"))
             tempColour = "Default";
     }
-
-
-
-    // Shooting Colourful bullets
-    private void Shoot()
-    {
-        // Instantiate bullet prefab
-        GameObject bullet = Instantiate(bulletPrefab, ShootingAim.position, Quaternion.identity);
-
-        // Add force to the bullet using its rigib body. Force always points forward from where the character is looking.
-        Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
-        bulletRB.AddForce(ShootingAim.up * shootForce, ForceMode2D.Impulse);
-
-        // Set the starting color of the bullet prefab to the players current colour
-        SpriteRenderer bulletRend = bullet.GetComponent<SpriteRenderer>();
-        bulletRend.color = playerRend.color;
-    }
-
 
     // Evaluate Colour changes and combinations
     public void ColourEval()
@@ -160,7 +87,7 @@ public class Player : MonoBehaviour
                 }
                 break;
 
-            case "Blue":
+            case "CostumBlue":
                 switch (tempColour)
                 {
                     case "Blue":
@@ -178,7 +105,7 @@ public class Player : MonoBehaviour
                 }
                 break;
 
-            case "Yellow":
+            case "CostumYellow":
                 switch (tempColour)
                 {
                     case "Blue":
@@ -195,7 +122,7 @@ public class Player : MonoBehaviour
                         break;
                 }
                 break;
-            case "Red":
+            case "CostumRed":
                 switch (tempColour)
                 {
                     case "Blue":
@@ -214,8 +141,9 @@ public class Player : MonoBehaviour
                 break;
 
             default:
-                Debug.Log("Twouble");
+                finalColour = bulletRend.color;
                 break;
         }
     }
 }
+    
