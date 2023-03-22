@@ -14,10 +14,13 @@ public class ControlPotionUI : MonoBehaviour
         image = GetComponent<Image>();
     }
 
-    public void SetPotionUI(bool instPotionUI, string potionColour)
+    public void InstPotionUI(bool instPotionUI)
     {
         gameObject.SetActive(instPotionUI);
+    }    
 
+    public void SetPotionUI(string potionColour)
+    {
         switch (potionColour)
         {
             case "Default":

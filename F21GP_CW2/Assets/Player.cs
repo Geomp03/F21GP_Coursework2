@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     [SerializeField] float speed, shootForce;
     private float DirX, DirY;
     private float angle;
-    private string tempColour = "Default", baseColour = "Default", potionColour;
+    private string tempColour = "Default", baseColour = "Default", potionColour = "Default";
     private Color finalColour;
     private bool holdingFlask;
 
@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
         else if (col.gameObject.name.Contains("EmptyFlask"))
         {
             holdingFlask = true;
-            PotionUI.SetPotionUI(true, "Default");
+            PotionUI.InstPotionUI(holdingFlask);
             Debug.Log("Holding empty flask");
         }
 
@@ -169,7 +169,8 @@ public class Player : MonoBehaviour
             Debug.Log("Player base colour changed to " + baseColour + " and Potion colour is back to " + potionColour);
         }
 
-        PotionUI.SetPotionUI(holdingFlask, potionColour);
+        PotionUI.InstPotionUI(holdingFlask);
+        PotionUI.SetPotionUI(potionColour);
     }
 
 
