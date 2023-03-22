@@ -11,10 +11,13 @@ public class Player : MonoBehaviour
     public GameObject  bulletPrefab;
     public Transform ShootingAim;
 
+    public EmptyFlask SpawnEmptyFlask;
+    public ControlPotionUI PotionUI;
+
     [SerializeField] float speed, shootForce;
     private float DirX, DirY;
     private float angle;
-    private string tempColour = "Default", baseColour = "Default", Potion;
+    private string tempColour = "Default", baseColour = "Default", potionColour;
     private Color finalColour;
     private bool holdingFlask;
 
@@ -70,17 +73,11 @@ public class Player : MonoBehaviour
 
 
         // Potion mechanic
-        if (holdingFlask == true && Input.GetButtonDown("UseItem") && Potion == "Default")
-        {
-            Potion = tempColour;
-            Debug.Log("Potion colour is: " + Potion);
-        }
-        else if (holdingFlask == true && Input.GetButtonDown("UseItem") && Potion!="Default")
-        {
-            baseColour = Potion;
-            Potion = "Default";
-            Debug.Log("Potion colour is: " + Potion);
-        }
+        if (Input.GetKeyDown(KeyCode.P))  // Placeholder condition to spawn the potion. Probably instantiate it elsewhere under some puzzle condition?
+            SpawnEmptyFlask.SpawnPotion();
+
+        if (Input.GetButtonDown("UseItem"))
+            PotionSomething();
 
     }
 
@@ -100,9 +97,10 @@ public class Player : MonoBehaviour
             tempColour = "Yellow";
 
         // Pickup empty flask
-        else if (col.gameObject.name.Contains("Potion"))
+        else if (col.gameObject.name.Contains("EmptyFlask"))
         {
             holdingFlask = true;
+            PotionUI.SetPotionUI(true, "Default");
             Debug.Log("Holding empty flask");
         }
 
@@ -135,6 +133,45 @@ public class Player : MonoBehaviour
         SpriteRenderer bulletRend = bullet.GetComponent<SpriteRenderer>();
         bulletRend.color = playerRend.color;
     }
+
+
+
+    // Potion Mechanic
+    private void PotionSomething()
+    {
+        // When not holding an empty flask
+        if (holdingFlask == false)
+        {
+            Debug.Log("Not holding an item");
+            // UI message of "no item to use" maybe even dudu kindah sound
+        }
+
+        // When holding an empty flask
+        else if (holdingFlask == true && potionColour == "Default")
+        {
+            if (tempColour == "Default")
+            {
+                Debug.Log("Not on colour puddle");
+                // UI message of "step on colour puddle to make potion"
+            }
+            else
+            {
+                potionColour = tempColour;  // Set flask colour to whatever the temporary colour is...
+                Debug.Log("Potion colour is: " + potionColour);
+            }
+        }
+
+        // When holding a flask with a coloured potion
+        else if (holdingFlask == true && potionColour != "Default")
+        {
+            baseColour = potionColour;  // Set player base colour to whatever the potion is
+            potionColour = "Default";   // Reset potion to default ie empty the flask
+            Debug.Log("Player base colour changed to " + baseColour + " and Potion colour is back to " + potionColour);
+        }
+
+        PotionUI.SetPotionUI(holdingFlask, potionColour);
+    }
+
 
 
     // Evaluate Colour changes and combinations
@@ -214,7 +251,7 @@ public class Player : MonoBehaviour
                 break;
 
             default:
-                Debug.Log("Twouble");
+                // Nothing for now...
                 break;
         }
     }
