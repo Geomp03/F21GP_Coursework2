@@ -8,15 +8,10 @@ public class ControlPotionUI : MonoBehaviour
     public Sprite emptyFlask, redPotion, yellowPotion, bluePotion;
     public Image image;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        image = GetComponent<Image>();
-    }
-
     public void InstPotionUI(bool instPotionUI)
     {
-        gameObject.SetActive(instPotionUI);
+        // gameObject.SetActive(instPotionUI);
+        image.enabled = instPotionUI;
     }    
 
     public void SetPotionUI(string potionColour)

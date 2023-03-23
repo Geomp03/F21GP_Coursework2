@@ -14,6 +14,9 @@ public class Player : MonoBehaviour
     public EmptyFlask SpawnEmptyFlask;
     public ControlPotionUI PotionUI;
 
+    public MessageDisp canvasText;
+    public IEnumerator coroutine;
+
     [SerializeField] float speed, shootForce;
     private float DirX, DirY;
     private float angle;
@@ -77,12 +80,13 @@ public class Player : MonoBehaviour
             SpawnEmptyFlask.SpawnPotion();
 
         if (Input.GetButtonDown("UseItem"))
-            PotionSomething();
+            PotionColours();
 
+    
     }
 
 
-
+    // Collisions
     void OnTriggerEnter2D(Collider2D col)
     {
         // Debug info
@@ -137,13 +141,15 @@ public class Player : MonoBehaviour
 
 
     // Potion Mechanic
-    private void PotionSomething()
+    private void PotionColours()
     {
         // When not holding an empty flask
         if (holdingFlask == false)
         {
+            // Warn player they're not holding any items to use (maybe add sound as well).
             Debug.Log("Not holding an item");
-            // UI message of "no item to use" maybe even dudu kindah sound
+            coroutine = canvasText.UIMessages("Not holding an item to use", 2);
+            StartCoroutine(coroutine);
         }
 
         // When holding an empty flask
@@ -151,8 +157,10 @@ public class Player : MonoBehaviour
         {
             if (tempColour == "Default")
             {
+                // UI message to warn player to step on a colour puddle to make potions
                 Debug.Log("Not on colour puddle");
-                // UI message of "step on colour puddle to make potion"
+                coroutine = canvasText.UIMessages("Step on a colour puddle to create a potion", 2);
+                StartCoroutine(coroutine);
             }
             else
             {
