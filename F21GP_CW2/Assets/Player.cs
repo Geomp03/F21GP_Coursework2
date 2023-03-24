@@ -8,16 +8,18 @@ public class Player : MonoBehaviour
     private Rigidbody2D    playerRB;
     private SpriteRenderer playerRend;
     // private BoxCollider2D  boxcol;
-    public GameObject  bulletPrefab;
-    public Transform ShootingAim;
+    //public GameObject  bulletPrefab;
+    //public Transform ShootingAim;
+    //public Transform ShootingStaff;
 
-    [SerializeField] float speed, shootForce;
+    [SerializeField] float speed;
     private float DirX, DirY;
     private float angle;
     private string tempColour = "Default", baseColour = "Default", Potion;
     private Color finalColour;
     private bool holdingFlask;
 
+    private PlayerAim playerAim;
 
     // Costum Colours Used
     public Color CostumBlue = new Color(0.1921569f, 0.3647059f, 0.9019608f);
@@ -51,12 +53,12 @@ public class Player : MonoBehaviour
         playerRB.velocity = new Vector2(DirX * speed, DirY * speed);
 
 
-        // Player sprite rotation based on movement
-        if (DirX != 0 || DirY !=0)
-        {
-            angle = Mathf.Atan2(DirY, DirX) * Mathf.Rad2Deg - 90f;
-        }
-        playerRB.rotation = angle;
+        //// Player sprite rotation based on movement
+        //if (DirX != 0 || DirY !=0)
+        //{
+        //    angle = Mathf.Atan2(DirY, DirX) * Mathf.Rad2Deg - 90f;
+        //}
+        //playerRB.rotation = angle;
 
 
         // Handle colour changes
@@ -64,9 +66,7 @@ public class Player : MonoBehaviour
         playerRend.color = finalColour;
 
 
-        // Shooting Colourful bullets
-        if (Input.GetButtonDown("Fire1"))
-            Shoot();
+        
 
 
         // Potion mechanic
@@ -122,19 +122,19 @@ public class Player : MonoBehaviour
 
 
     // Shooting Colourful bullets
-    private void Shoot()
-    {
-        // Instantiate bullet prefab
-        GameObject bullet = Instantiate(bulletPrefab, ShootingAim.position, Quaternion.identity);
+    //private void Shoot()
+    //{
+    //    // Instantiate bullet prefab
+    //    GameObject bullet = Instantiate(bulletPrefab, ShootingStaff.position, ShootingAim.rotation);
 
-        // Add force to the bullet using its rigib body. Force always points forward from where the character is looking.
-        Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
-        bulletRB.AddForce(ShootingAim.up * shootForce, ForceMode2D.Impulse);
+    //    // Add force to the bullet using its rigib body. Force always points forward from where the character is looking.
+    //    Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
+    //    bulletRB.AddForce(ShootingAim.up * shootForce, ForceMode2D.Impulse);
 
-        // Set the starting color of the bullet prefab to the players current colour
-        SpriteRenderer bulletRend = bullet.GetComponent<SpriteRenderer>();
-        bulletRend.color = playerRend.color;
-    }
+    //    // Set the starting color of the bullet prefab to the players current colour
+    //    SpriteRenderer bulletRend = bullet.GetComponent<SpriteRenderer>();
+    //    bulletRend.color = playerRend.color;
+    //}
 
 
     // Evaluate Colour changes and combinations
