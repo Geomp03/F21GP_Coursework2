@@ -17,12 +17,15 @@ public class Player : MonoBehaviour
     public MessageDisp canvasText;
     public IEnumerator coroutine;
 
+    public HealthSystem healthSystem;
+
     [SerializeField] float speed, shootForce;
     private float DirX, DirY;
     private float angle;
     private string tempColour = "Default", baseColour = "Default", potionColour = "Default";
     private Color finalColour;
     private bool holdingFlask;
+    public int currentHealth, maxHealth;
 
 
     // Costum Colours Used
@@ -44,6 +47,11 @@ public class Player : MonoBehaviour
         // boxcol = GetComponent<BoxCollider2D>();
 
         holdingFlask = false;
+
+        // Instantiate health system
+        currentHealth = maxHealth;
+        healthSystem.SetMaxHealth(maxHealth);
+        healthSystem.SetHealth(currentHealth);
     }
 
 
@@ -65,6 +73,11 @@ public class Player : MonoBehaviour
         playerRB.rotation = angle;
 
 
+        // Ensure current player health never goes above the max player health
+        if (currentHealth > maxHealth)
+            currentHealth = maxHealth;
+
+
         // Handle colour changes
         ColourEval();
         playerRend.color = finalColour;
@@ -82,7 +95,10 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("UseItem"))
             PotionColours();
 
-    
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            TakeDamage(1); // Lose health???
+        }
     }
 
 
@@ -110,7 +126,7 @@ public class Player : MonoBehaviour
 
         else if (col.gameObject.name.Contains("Enemy"))
         {
-            // Lose health???
+            TakeDamage(1); // Lose health???
         }
     }
 
@@ -182,6 +198,16 @@ public class Player : MonoBehaviour
     }
 
 
+    private void TakeDamage(int damage)
+    {
+        currentHealth = currentHealth - 1;
+        healthSystem.SetHealth(currentHealth);
+
+        if (currentHealth == 0)
+        {
+            // Death!!!
+        }
+    }
 
     // Evaluate Colour changes and combinations
     public void ColourEval()
