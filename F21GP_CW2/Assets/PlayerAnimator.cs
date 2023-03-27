@@ -27,12 +27,10 @@ public class PlayerAnimator : MonoBehaviour
         if (horizontalInput > 0)
         {
             animator.SetTrigger("Right");
-            Debug.Log(horizontalInput);
         }
         if (horizontalInput < 0)
         {
             animator.SetTrigger("Left");
-            Debug.Log(horizontalInput);
         }
 
         if (horizontalInput == 0 && verticalInput == 0)
