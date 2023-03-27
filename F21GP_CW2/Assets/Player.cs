@@ -128,6 +128,9 @@ public class Player : MonoBehaviour
         {
             TakeDamage(1); // Lose health???
         }
+
+        else if (col.gameObject.name == "Subroom 2")
+            SpawnEmptyFlask.SpawnPotion();
     }
 
     void OnTriggerExit2D(Collider2D col)
