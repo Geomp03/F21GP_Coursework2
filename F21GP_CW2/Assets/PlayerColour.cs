@@ -6,8 +6,8 @@ public class PlayerColour : MonoBehaviour
 {
     private Material material;
 
-    private string tempColour = "Default", baseColour = "Default";
-    public Color finalColour;
+    [HideInInspector] public string tempColour = "Default", baseColour = "Default";
+    [HideInInspector] public Color finalColour;
 
     // Costum Colours Used
     private Color CostumBlue = new Color(0.1921569f, 0.3647059f, 0.9019608f);
@@ -24,12 +24,12 @@ public class PlayerColour : MonoBehaviour
     private void Update()
     {
         ColourEval();
-        ChangeColour();
+        ChangeColour(finalColour);
     }
 
-    private void ChangeColour()
+    public void ChangeColour(Color color)
     {
-        material.SetColor("_Color", finalColour);
+        material.SetColor("_Color", color);
     }
 
     // Evaluate Colour changes and combinations
@@ -116,7 +116,7 @@ public class PlayerColour : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         // Debug info
-        Debug.Log("Player collied with " + col.gameObject.name + " @ " + Time.time);
+        //Debug.Log("Player collied with " + col.gameObject.name + " @ " + Time.time);
 
         // On entering a colour puddle set tempColour to the appropriate colour.
         if (col.gameObject.name.Contains("BluePuddle"))
