@@ -54,7 +54,7 @@ public class BulletScript : MonoBehaviour
         else if (collision.gameObject.name.Contains("YellowPuddle"))
             tempColour = "Yellow";
 
-        else if (!collision.gameObject.name.Contains("Player") && !collision.gameObject.name.Contains("Bullet"))
+        else if (!collision.gameObject.name.Contains("Player") && !collision.gameObject.name.Contains("Bullet") && !collision.gameObject.name.Contains("Subroom"))
             Destroy(gameObject);
     }
     void OnTriggerExit2D(Collider2D col)

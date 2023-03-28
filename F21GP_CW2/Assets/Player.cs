@@ -12,12 +12,21 @@ public class Player : MonoBehaviour
     //public Transform ShootingAim;
     //public Transform ShootingStaff;
 
-    [SerializeField] float speed;
+    public EmptyFlask SpawnEmptyFlask;
+    public ControlPotionUI PotionUI;
+
+    public MessageDisp canvasText;
+    public IEnumerator coroutine;
+
+    public HealthSystem healthSystem;
+
+    [SerializeField] float speed, shootForce;
     private float DirX, DirY;
     private float angle;
-    private string tempColour = "Default", baseColour = "Default", Potion;
+    private string tempColour = "Default", baseColour = "Default", potionColour = "Default";
     private Color finalColour;
     private bool holdingFlask;
+    public int currentHealth, maxHealth;
 
     private PlayerAim playerAim;
 
@@ -40,6 +49,11 @@ public class Player : MonoBehaviour
         // boxcol = GetComponent<BoxCollider2D>();
 
         holdingFlask = false;
+
+        // Instantiate health system
+        currentHealth = maxHealth;
+        healthSystem.SetMaxHealth(maxHealth);
+        healthSystem.SetHealth(currentHealth);
     }
 
 
@@ -61,6 +75,11 @@ public class Player : MonoBehaviour
         //playerRB.rotation = angle;
 
 
+        // Ensure current player health never goes above the max player health
+        if (currentHealth > maxHealth)
+            currentHealth = maxHealth;
+
+
         // Handle colour changes
         ColourEval();
         playerRend.color = finalColour;
@@ -70,22 +89,20 @@ public class Player : MonoBehaviour
 
 
         // Potion mechanic
-        if (holdingFlask == true && Input.GetButtonDown("UseItem") && Potion == "Default")
-        {
-            Potion = tempColour;
-            Debug.Log("Potion colour is: " + Potion);
-        }
-        else if (holdingFlask == true && Input.GetButtonDown("UseItem") && Potion!="Default")
-        {
-            baseColour = Potion;
-            Potion = "Default";
-            Debug.Log("Potion colour is: " + Potion);
-        }
+        if (Input.GetKeyDown(KeyCode.P))  // Placeholder condition to spawn the potion. Probably instantiate it elsewhere under some puzzle condition?
+            SpawnEmptyFlask.SpawnPotion();
 
+        if (Input.GetButtonDown("UseItem"))
+            PotionColours();
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            TakeDamage(1); // Lose health???
+        }
     }
 
 
-
+    // Collisions
     void OnTriggerEnter2D(Collider2D col)
     {
         // Debug info
@@ -100,16 +117,20 @@ public class Player : MonoBehaviour
             tempColour = "Yellow";
 
         // Pickup empty flask
-        else if (col.gameObject.name.Contains("Potion"))
+        else if (col.gameObject.name.Contains("EmptyFlask"))
         {
             holdingFlask = true;
+            PotionUI.InstPotionUI(holdingFlask);
             Debug.Log("Holding empty flask");
         }
 
         else if (col.gameObject.name.Contains("Enemy"))
         {
-            // Lose health???
+            TakeDamage(1); // Lose health???
         }
+
+        else if (col.gameObject.name == "Subroom 2")
+            SpawnEmptyFlask.SpawnPotion();
     }
 
     void OnTriggerExit2D(Collider2D col)
@@ -136,6 +157,60 @@ public class Player : MonoBehaviour
     //    bulletRend.color = playerRend.color;
     //}
 
+
+
+    // Potion Mechanic
+    private void PotionColours()
+    {
+        // When not holding an empty flask
+        if (holdingFlask == false)
+        {
+            // Warn player they're not holding any items to use (maybe add sound as well).
+            Debug.Log("Not holding an item");
+            coroutine = canvasText.UIMessages("Not holding an item to use", 2);
+            StartCoroutine(coroutine);
+        }
+
+        // When holding an empty flask
+        else if (holdingFlask == true && potionColour == "Default")
+        {
+            if (tempColour == "Default")
+            {
+                // UI message to warn player to step on a colour puddle to make potions
+                Debug.Log("Not on colour puddle");
+                coroutine = canvasText.UIMessages("Step on a colour puddle to create a potion", 2);
+                StartCoroutine(coroutine);
+            }
+            else
+            {
+                potionColour = tempColour;  // Set flask colour to whatever the temporary colour is...
+                Debug.Log("Potion colour is: " + potionColour);
+            }
+        }
+
+        // When holding a flask with a coloured potion
+        else if (holdingFlask == true && potionColour != "Default")
+        {
+            baseColour = potionColour;  // Set player base colour to whatever the potion is
+            potionColour = "Default";   // Reset potion to default ie empty the flask
+            Debug.Log("Player base colour changed to " + baseColour + " and Potion colour is back to " + potionColour);
+        }
+
+        PotionUI.InstPotionUI(holdingFlask);
+        PotionUI.SetPotionUI(potionColour);
+    }
+
+
+    private void TakeDamage(int damage)
+    {
+        currentHealth = currentHealth - 1;
+        healthSystem.SetHealth(currentHealth);
+
+        if (currentHealth == 0)
+        {
+            // Death!!!
+        }
+    }
 
     // Evaluate Colour changes and combinations
     public void ColourEval()
@@ -214,7 +289,7 @@ public class Player : MonoBehaviour
                 break;
 
             default:
-                Debug.Log("Twouble");
+                // Nothing for now...
                 break;
         }
     }
