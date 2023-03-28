@@ -11,6 +11,9 @@ public class PlayerAim : MonoBehaviour
 
     [SerializeField] float shootForce;
 
+    public float fireRate = 1f;
+    private float nextFire = 0f;
+
     public GameObject bulletPrefab;
 
     [HideInInspector]
@@ -35,8 +38,11 @@ public class PlayerAim : MonoBehaviour
     private void Shoot()
     {
         // Shooting Colourful bullets
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && Time.time > nextFire)
         {
+            // Fire rate counter
+            nextFire = Time.time + fireRate;
+
             Vector3 mousePosition = GetMouseWorldPosition();
 
             // Instantiate bullet prefab
