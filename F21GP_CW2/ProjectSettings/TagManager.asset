@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Puddle
   - Wall
+  - RedPuddle
+  - FireRateUp
   layers:
   - Default
   - TransparentFX

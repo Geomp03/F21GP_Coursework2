@@ -9,7 +9,9 @@ public class PlayerAim : MonoBehaviour
     [SerializeField] private Transform aimTransform;
     [SerializeField] private Transform aimStaffEndPointPosition;
 
-    [SerializeField] float shootForce;
+    public float shootForce = 10f;
+    public float fireRate = 1f;
+    private float nextFire = 0f;
 
     public GameObject bulletPrefab;
 
@@ -35,8 +37,11 @@ public class PlayerAim : MonoBehaviour
     private void Shoot()
     {
         // Shooting Colourful bullets
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && Time.time > nextFire)
         {
+            // Fire rate counter
+            nextFire = Time.time + fireRate;
+
             Vector3 mousePosition = GetMouseWorldPosition();
 
             // Instantiate bullet prefab
