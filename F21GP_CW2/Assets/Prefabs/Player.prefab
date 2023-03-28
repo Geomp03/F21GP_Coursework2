@@ -221,6 +221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25eed7518f65e54ba4f7aa594b07109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tempColour: Default
+  baseColour: Default
   finalColour: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &8546027431307117881
 GameObject:
@@ -322,6 +324,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25eed7518f65e54ba4f7aa594b07109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tempColour: Default
+  baseColour: Default
   finalColour: {r: 0, g: 0, b: 0, a: 0}
 --- !u!58 &4995943475756424445
 CircleCollider2D:
@@ -362,11 +366,7 @@ GameObject:
   - component: {fileID: 8546027432104747313}
   - component: {fileID: 8546027432104747325}
   - component: {fileID: 9011625777626851650}
-  - component: {fileID: 5897679525087547596}
   - component: {fileID: 3111716783024170082}
-  - component: {fileID: 577255149987550700}
-  - component: {fileID: 587949203208918806}
-  - component: {fileID: 8445830552659845084}
   - component: {fileID: 760336849491046774}
   m_Layer: 0
   m_Name: Player
@@ -430,58 +430,6 @@ MonoBehaviour:
   fireRate: 1
   bulletPrefab: {fileID: 6669619309628551147, guid: 3136cd3d373729e41a2309543e29edda, type: 3}
   angle: 0
---- !u!212 &5897679525087547596
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8546027432104747324}
-  m_Enabled: 0
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: da9d0a4cd3f09ca4daddc3e5d3c67231, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1543841347
-  m_SortingLayer: 1
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300002, guid: c98b9cd543d1a6d448e27babb81798a0, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1.7, y: 3.3}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!114 &3111716783024170082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -495,64 +443,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAim: {fileID: 9011625777626851650}
---- !u!95 &577255149987550700
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8546027432104747324}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5571cfb8a28bf00448c6cf185bd38403, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
---- !u!114 &587949203208918806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8546027432104747324}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d08600529da8ba4eb400dd03564d9b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!61 &8445830552659845084
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8546027432104747324}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.019664824, y: 0.24607417}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.49409798, y: 0.0516875}
-    oldSize: {x: 1.7, y: 3.3}
-    newSize: {x: 1.7, y: 3.3}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.9872482, y: 0.67917794}
-  m_EdgeRadius: 0
 --- !u!50 &760336849491046774
 Rigidbody2D:
   serializedVersion: 4
