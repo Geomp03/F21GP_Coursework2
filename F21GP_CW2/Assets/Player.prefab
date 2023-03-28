@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8546027431307117886}
   - component: {fileID: 8546027431307117887}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ShootingAim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,9 +97,9 @@ GameObject:
   - component: {fileID: 8546027432104747315}
   - component: {fileID: 8546027432104747314}
   - component: {fileID: 8546027432104747325}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -233,8 +233,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6669619309628551147, guid: 3136cd3d373729e41a2309543e29edda, type: 3}
   ShootingAim: {fileID: 8546027431307117886}
+  SpawnEmptyFlask: {fileID: 0}
+  PotionUI: {fileID: 0}
+  canvasText: {fileID: 0}
+  healthSystem: {fileID: 0}
   speed: 5
   shootForce: 20
+  currentHealth: 0
+  maxHealth: 0
   CostumBlue: {r: 0.1921569, g: 0.3647059, b: 0.9019608, a: 1}
   CostumRed: {r: 0.937255, g: 0.2470588, b: 0.2509804, a: 1}
   CostumYellow: {r: 0.9607844, g: 0.8705883, b: 0.1960784, a: 1}

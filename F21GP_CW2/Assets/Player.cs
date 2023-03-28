@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     // Components used
     private Rigidbody2D    playerRB;
     private SpriteRenderer playerRend;
-    // private BoxCollider2D  boxcol;
     public GameObject  bulletPrefab;
     public Transform ShootingAim;
 
@@ -44,8 +43,8 @@ public class Player : MonoBehaviour
         // Initialise all components needed...
         playerRB   = GetComponent<Rigidbody2D>();
         playerRend = GetComponent<SpriteRenderer>();
-        // boxcol = GetComponent<BoxCollider2D>();
 
+        // Start with no empty bottle
         holdingFlask = false;
 
         // Instantiate health system
@@ -136,7 +135,7 @@ public class Player : MonoBehaviour
     void OnTriggerExit2D(Collider2D col)
     {
         // After leaving a colour puddle return tempColour to "default".
-        if (col.gameObject.name.Contains("BluePuddle") || col.gameObject.name.Contains("RedPuddle") || col.gameObject.name.Contains("YellowPuddle"))
+        if (col.gameObject.name.Contains("Puddle"))
             tempColour = "Default";
     }
 

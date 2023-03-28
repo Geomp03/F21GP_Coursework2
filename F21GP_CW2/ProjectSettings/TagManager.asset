@@ -3,16 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Subroom
+  - Bullet
+  - Coloured Obstacle
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
+  - Bullets
+  - Subroom
   - 
   - 
   - 
@@ -38,6 +41,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: UI Canvas
+    uniqueID: 344471275
+    locked: 0
+  - name: Player
+    uniqueID: 1846132823
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Misc
+    uniqueID: 30505887
     locked: 0

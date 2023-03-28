@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6669619309628551151}
   - component: {fileID: 4059920465872731239}
   - component: {fileID: 6669619309628551144}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,3 +136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9788e5dcf9856d44a36d8dd5ff36165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CostumBlue: {r: 0.1921569, g: 0.3647059, b: 0.9019608, a: 1}
+  CostumRed: {r: 0.937255, g: 0.2470588, b: 0.2509804, a: 1}
+  CostumYellow: {r: 0.9607844, g: 0.8705883, b: 0.1960784, a: 1}
+  CostumOrange: {r: 0.9058824, g: 0.572549, b: 0.1568628, a: 1}
+  CostumGreen: {r: 0.2156863, g: 0.9490197, b: 0, a: 1}
+  CostumPurple: {r: 0.682353, g: 0.0784314, b: 0.9686275, a: 1}
