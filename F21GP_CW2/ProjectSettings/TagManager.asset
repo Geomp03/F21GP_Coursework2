@@ -6,8 +6,8 @@ TagManager:
   tags:
   - Puddle
   - Wall
-  - RedPuddle
   - FireRateUp
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -42,12 +42,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: UI Canvas
-    uniqueID: 1412216627
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: Player
     uniqueID: 2751125949
+    locked: 0
+  - name: UI Canvas
+    uniqueID: 1412216627
     locked: 0

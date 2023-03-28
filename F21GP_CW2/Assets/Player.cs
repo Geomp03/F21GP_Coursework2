@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     // Components used
     private Rigidbody2D    playerRB;
-    private SpriteRenderer playerRend;
+    //private SpriteRenderer playerRend;
 
     public EmptyFlask SpawnEmptyFlask;
     public ControlPotionUI PotionUI;
@@ -18,24 +18,26 @@ public class Player : MonoBehaviour
 
     [SerializeField] float speed, shootForce;
     private float DirX, DirY;
-    private string tempColour = "Default", baseColour = "Default", potionColour = "Default";
-    //private Color finalColour;
+    [HideInInspector] public string tempColour, baseColour, potionColour;
+    [HideInInspector] public Color finalColour;
+
+
     private bool holdingFlask;
     public int currentHealth, maxHealth;
 
     private PlayerAim playerAim;
-
-    
-
-    
 
     // Start is called before the first frame update
     private void Start()
     {
         // Initialise all components needed...
         playerRB   = GetComponent<Rigidbody2D>();
-        playerRend = GetComponent<SpriteRenderer>();
+        //playerRend = GetComponent<SpriteRenderer>();
 
+        // Start with default colour and no flask
+        tempColour   = "Default";
+        baseColour   = "Default";
+        potionColour = "Default";
         holdingFlask = false;
 
         // Instantiate health system
@@ -60,26 +62,15 @@ public class Player : MonoBehaviour
             currentHealth = maxHealth;
 
 
-        // Handle colour changes
-        //ColourEval();
-        //playerRend.color = finalColour;
-
         // Potion mechanic
-
         if (Input.GetButtonDown("UseItem")) // U key
             PotionColours();
-
-        //if (Input.GetKeyDown(KeyCode.L))
-        //{
-        //    TakeDamage(1); // Lose health???
-        //}
     }
 
 
     // Collisions
     void OnTriggerEnter2D(Collider2D col)
     {
-    
         // Pickup empty flask
         if (col.gameObject.name.Contains("EmptyFlask"))
         {
@@ -88,7 +79,7 @@ public class Player : MonoBehaviour
             Debug.Log("Holding empty flask");
         }
 
-        else if (col.gameObject.name.Contains("Enemy"))
+        else if (col.gameObject.tag == "Enemy")
         {
             TakeDamage(1); // Lose health???
         }

@@ -4,42 +4,46 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    private PlayerColour playerColour;
+    public Player player;
+    // public PlayerColour playerColour;
     private Material material;
-    private Color bulletColour;
+    // private Color bulletColour;
 
     private void Awake()
     {
-        playerColour = FindObjectOfType<PlayerColour>();
+        player = FindObjectOfType<Player>();
+        // playerColour = FindObjectOfType<PlayerColour>();
         material = GetComponent<SpriteRenderer>().sharedMaterial;
-        material.SetColor("_Color", bulletColour);
+        material.SetColor("_Color", player.finalColour);
+
+        Debug.Log("BulletScript:  player.tempColour - " + player.tempColour + " player.baseColour - " + player.baseColour);
+        Debug.Log("BulletScript:  player.finalColour - " + player.finalColour);
     }
 
     private void Update()
     {
-        material.SetColor("_Color", playerColour.finalColour);
+        material.SetColor("_Color", player.finalColour);
     }
-    void OnTriggerEnter2D(Collider2D collision)
+        
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.tag == "Enemy")
+        Debug.Log(collision.gameObject.tag);
+        if (collision.gameObject.tag == "Enemy")
         {
             Destroy(collision.gameObject);
         }
-        if(collision.tag == "Wall")
+        if (collision.gameObject.tag == "Wall")
         {
             Destroy(gameObject);
         }
 
-        if (collision.gameObject.name.Contains("BluePuddle"))
-            playerColour.tempColour = "Blue";
-        else if (collision.gameObject.name.Contains("RedPuddle"))
-            playerColour.tempColour = "Red";
-        else if (collision.gameObject.name.Contains("YellowPuddle"))
-            playerColour.tempColour = "Yellow";
-    }
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        Destroy(gameObject);
+        // Currently it is dirrectly connected to the players colour so this is conflicting...
+        //if (collision.gameObject.name.Contains("BluePuddle"))
+        //    player.tempColour = "Blue";
+        //else if (collision.gameObject.name.Contains("RedPuddle"))
+        //    player.tempColour = "Red";
+        //else if (collision.gameObject.name.Contains("YellowPuddle"))
+        //    player.tempColour = "Yellow";
     }
 }
     

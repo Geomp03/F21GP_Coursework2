@@ -7,7 +7,7 @@ public class EmptyFlask : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Destroyed when player collides with it...
-        if (collision.gameObject.name.Contains("Player"))
+        if (collision.gameObject.tag == "Player")
             Destroy(gameObject);
     }
 

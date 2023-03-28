@@ -221,6 +221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25eed7518f65e54ba4f7aa594b07109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tempColour: Default
+  baseColour: Default
   finalColour: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &8546027431307117881
 GameObject:
@@ -232,7 +234,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8546027431307117886}
   - component: {fileID: 8546027431307117887}
-  - component: {fileID: 9079280640278526484}
   - component: {fileID: 4995943475756424445}
   - component: {fileID: 316246106087138227}
   m_Layer: 0
@@ -310,19 +311,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &9079280640278526484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8546027431307117881}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b25eed7518f65e54ba4f7aa594b07109, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finalColour: {r: 0, g: 0, b: 0, a: 0}
 --- !u!58 &4995943475756424445
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -363,7 +351,6 @@ GameObject:
   - component: {fileID: 8546027432104747325}
   - component: {fileID: 9011625777626851650}
   - component: {fileID: 5897679525087547596}
-  - component: {fileID: 3111716783024170082}
   - component: {fileID: 577255149987550700}
   - component: {fileID: 587949203208918806}
   - component: {fileID: 8445830552659845084}
@@ -482,19 +469,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3111716783024170082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8546027432104747324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3499caf39945060439efd08ae718d948, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerAim: {fileID: 9011625777626851650}
 --- !u!95 &577255149987550700
 Animator:
   serializedVersion: 5

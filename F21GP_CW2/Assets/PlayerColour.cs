@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerColour : MonoBehaviour
 {
+    public Player player;
     private Material material;
 
-    [HideInInspector] public string tempColour = "Default", baseColour = "Default";
-    [HideInInspector] public Color finalColour;
+    // [HideInInspector] public string tempColour, baseColour; // moved to player script...
+    // [HideInInspector] public Color player.finalColour;
 
     // Costum Colours Used
     private Color CostumBlue = new Color(0.1921569f, 0.3647059f, 0.9019608f);
@@ -24,7 +25,8 @@ public class PlayerColour : MonoBehaviour
     private void Update()
     {
         ColourEval();
-        ChangeColour(finalColour);
+        // Debug.Log("PlayerColour: baseColour - " + player.baseColour + " tempColour - " + player.tempColour);
+        ChangeColour(player.finalColour);
     }
 
     public void ChangeColour(Color color)
@@ -35,75 +37,75 @@ public class PlayerColour : MonoBehaviour
     // Evaluate Colour changes and combinations
     public void ColourEval()
     {
-        switch (baseColour)
+        switch (player.baseColour)
         {
             case "Default":
-                switch (tempColour)
+                switch (player.tempColour)
                 {
                     case "Blue":
-                        finalColour = CostumBlue;
+                        player.finalColour = CostumBlue;
                         break;
                     case "Red":
-                        finalColour = CostumRed;
+                        player.finalColour = CostumRed;
                         break;
                     case "Yellow":
-                        finalColour = CostumYellow;
+                        player.finalColour = CostumYellow;
                         break;
                     default:
-                        finalColour = Color.black;
+                        player.finalColour = Color.black;
                         break;
                 }
                 break;
 
             case "Blue":
-                switch (tempColour)
+                switch (player.tempColour)
                 {
                     case "Blue":
-                        finalColour = CostumBlue;
+                        player.finalColour = CostumBlue;
                         break;
                     case "Red":
-                        finalColour = CostumPurple;
+                        player.finalColour = CostumPurple;
                         break;
                     case "Yellow":
-                        finalColour = CostumGreen;
+                        player.finalColour = CostumGreen;
                         break;
                     default:
-                        finalColour = CostumBlue;
+                        player.finalColour = CostumBlue;
                         break;
                 }
                 break;
 
             case "Yellow":
-                switch (tempColour)
+                switch (player.tempColour)
                 {
                     case "Blue":
-                        finalColour = CostumGreen;
+                        player.finalColour = CostumGreen;
                         break;
                     case "Red":
-                        finalColour = CostumOrange;
+                        player.finalColour = CostumOrange;
                         break;
                     case "Yellow":
-                        finalColour = CostumYellow;
+                        player.finalColour = CostumYellow;
                         break;
                     default:
-                        finalColour = CostumYellow;
+                        player.finalColour = CostumYellow;
                         break;
                 }
                 break;
             case "Red":
-                switch (tempColour)
+                switch (player.tempColour)
                 {
                     case "Blue":
-                        finalColour = CostumPurple;
+                        player.finalColour = CostumPurple;
                         break;
                     case "Red":
-                        finalColour = CostumRed;
+                        player.finalColour = CostumRed;
                         break;
                     case "Yellow":
-                        finalColour = CostumOrange;
+                        player.finalColour = CostumOrange;
                         break;
                     default:
-                        finalColour = CostumRed;
+                        player.finalColour = CostumRed;
                         break;
                 }
                 break;
@@ -120,16 +122,16 @@ public class PlayerColour : MonoBehaviour
 
         // On entering a colour puddle set tempColour to the appropriate colour.
         if (col.gameObject.name.Contains("BluePuddle"))
-            tempColour = "Blue";
+            player.tempColour = "Blue";
         else if (col.gameObject.name.Contains("RedPuddle"))
-            tempColour = "Red";
+            player.tempColour = "Red";
         else if (col.gameObject.name.Contains("YellowPuddle"))
-            tempColour = "Yellow";
+            player.tempColour = "Yellow";
     }
     void OnTriggerExit2D(Collider2D col)
     {
         // After leaving a colour puddle return tempColour to "default".
         if (col.gameObject.name.Contains("Puddle"))
-            tempColour = "Default";
+            player.tempColour = "Default";
     }
 }
