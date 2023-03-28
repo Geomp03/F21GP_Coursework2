@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireRateUp : MonoBehaviour
+public class ShootingSpeedUp : MonoBehaviour
 {
     public PlayerAim playerAim;
 
@@ -15,7 +15,7 @@ public class FireRateUp : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            playerAim.fireRate = playerAim.fireRate / 2;
+            playerAim.shootForce = playerAim.shootForce + 5;
             Destroy(gameObject);
         }
     }

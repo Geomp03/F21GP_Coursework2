@@ -9,8 +9,7 @@ public class PlayerAim : MonoBehaviour
     [SerializeField] private Transform aimTransform;
     [SerializeField] private Transform aimStaffEndPointPosition;
 
-    [SerializeField] float shootForce;
-
+    public float shootForce = 10f;
     public float fireRate = 1f;
     private float nextFire = 0f;
 
