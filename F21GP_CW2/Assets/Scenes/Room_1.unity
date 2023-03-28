@@ -382,7 +382,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1412216627
   m_SortingOrder: -10
   m_TargetDisplay: 0
 --- !u!224 &146418807
@@ -581,6 +581,17 @@ MonoBehaviour:
   - {fileID: 2061162894}
   fullHeart: {fileID: 21300000, guid: 2578e929996e19c4bb9e75123d789e0c, type: 3}
   emptyHeart: {fileID: 21300000, guid: b3d9d5a8dc0d01d409ae573e2a1b4557, type: 3}
+--- !u!114 &361963719 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8546027432104747325, guid: 05976623d3cd08a4abdb52e1f498d34d, type: 3}
+  m_PrefabInstance: {fileID: 966316850}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 904e962752498b54994e0300681ec15b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &370100589
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,6 +1070,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1165,6 +1177,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 432b2fdd6c9251f4db2957c11fd9c276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 361963719}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1805,6 +1830,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4774877938556339481, guid: 05976623d3cd08a4abdb52e1f498d34d, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774877938556339481, guid: 05976623d3cd08a4abdb52e1f498d34d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774877938556339481, guid: 05976623d3cd08a4abdb52e1f498d34d, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1543841347
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546027431307117887, guid: 05976623d3cd08a4abdb52e1f498d34d, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546027431307117887, guid: 05976623d3cd08a4abdb52e1f498d34d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546027431307117887, guid: 05976623d3cd08a4abdb52e1f498d34d, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1543841347
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546027432104747312, guid: 05976623d3cd08a4abdb52e1f498d34d, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546027432104747312, guid: 05976623d3cd08a4abdb52e1f498d34d, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8546027432104747313, guid: 05976623d3cd08a4abdb52e1f498d34d, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1851,11 +1908,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8546027432104747315, guid: 05976623d3cd08a4abdb52e1f498d34d, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 8546027432104747315, guid: 05976623d3cd08a4abdb52e1f498d34d, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1
+      value: 3.3
       objectReference: {fileID: 0}
     - target: {fileID: 8546027432104747324, guid: 05976623d3cd08a4abdb52e1f498d34d, type: 3}
       propertyPath: m_Name

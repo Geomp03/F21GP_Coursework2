@@ -7,10 +7,6 @@ public class Player : MonoBehaviour
     // Components used
     private Rigidbody2D    playerRB;
     private SpriteRenderer playerRend;
-    // private BoxCollider2D  boxcol;
-    //public GameObject  bulletPrefab;
-    //public Transform ShootingAim;
-    //public Transform ShootingStaff;
 
     public EmptyFlask SpawnEmptyFlask;
     public ControlPotionUI PotionUI;
@@ -22,7 +18,6 @@ public class Player : MonoBehaviour
 
     [SerializeField] float speed, shootForce;
     private float DirX, DirY;
-    private float angle;
     private string tempColour = "Default", baseColour = "Default", potionColour = "Default";
     private Color finalColour;
     private bool holdingFlask;
@@ -46,7 +41,6 @@ public class Player : MonoBehaviour
         // Initialise all components needed...
         playerRB   = GetComponent<Rigidbody2D>();
         playerRend = GetComponent<SpriteRenderer>();
-        // boxcol = GetComponent<BoxCollider2D>();
 
         holdingFlask = false;
 
@@ -67,14 +61,6 @@ public class Player : MonoBehaviour
         playerRB.velocity = new Vector2(DirX * speed, DirY * speed);
 
 
-        //// Player sprite rotation based on movement
-        //if (DirX != 0 || DirY !=0)
-        //{
-        //    angle = Mathf.Atan2(DirY, DirX) * Mathf.Rad2Deg - 90f;
-        //}
-        //playerRB.rotation = angle;
-
-
         // Ensure current player health never goes above the max player health
         if (currentHealth > maxHealth)
             currentHealth = maxHealth;
@@ -84,21 +70,15 @@ public class Player : MonoBehaviour
         ColourEval();
         playerRend.color = finalColour;
 
-
-        
-
-
         // Potion mechanic
-        if (Input.GetKeyDown(KeyCode.P))  // Placeholder condition to spawn the potion. Probably instantiate it elsewhere under some puzzle condition?
-            SpawnEmptyFlask.SpawnPotion();
 
-        if (Input.GetButtonDown("UseItem"))
+        if (Input.GetButtonDown("UseItem")) // U key
             PotionColours();
 
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            TakeDamage(1); // Lose health???
-        }
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    TakeDamage(1); // Lose health???
+        //}
     }
 
 
@@ -136,28 +116,9 @@ public class Player : MonoBehaviour
     void OnTriggerExit2D(Collider2D col)
     {
         // After leaving a colour puddle return tempColour to "default".
-        if (col.gameObject.name.Contains("BluePuddle") || col.gameObject.name.Contains("RedPuddle") || col.gameObject.name.Contains("YellowPuddle"))
+        if (col.gameObject.name.Contains("Puddle"))
             tempColour = "Default";
     }
-
-
-
-    // Shooting Colourful bullets
-    //private void Shoot()
-    //{
-    //    // Instantiate bullet prefab
-    //    GameObject bullet = Instantiate(bulletPrefab, ShootingStaff.position, ShootingAim.rotation);
-
-    //    // Add force to the bullet using its rigib body. Force always points forward from where the character is looking.
-    //    Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
-    //    bulletRB.AddForce(ShootingAim.up * shootForce, ForceMode2D.Impulse);
-
-    //    // Set the starting color of the bullet prefab to the players current colour
-    //    SpriteRenderer bulletRend = bullet.GetComponent<SpriteRenderer>();
-    //    bulletRend.color = playerRend.color;
-    //}
-
-
 
     // Potion Mechanic
     private void PotionColours()
