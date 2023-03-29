@@ -56,11 +56,13 @@ public class Player : MonoBehaviour
         
         playerRB.velocity = new Vector2(DirX * speed, DirY * speed);
 
-
-        // Ensure current player health never goes above the max player health
+        
+        // Ensure current player health never goes above max health
         if (currentHealth > maxHealth)
             currentHealth = maxHealth;
 
+        // Update player health bar graphic
+        healthSystem.SetHealth(currentHealth);
 
         // Potion mechanic
         if (Input.GetButtonDown("UseItem")) // U key
@@ -135,8 +137,8 @@ public class Player : MonoBehaviour
     private void TakeDamage(int damage)
     {
         currentHealth = currentHealth - 1;
-        healthSystem.SetHealth(currentHealth);
 
+        // Check for death
         if (currentHealth == 0)
         {
             // Death!!!
