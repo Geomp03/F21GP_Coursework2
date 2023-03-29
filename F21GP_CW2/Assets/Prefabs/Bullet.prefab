@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 4979982511703273590}
   m_Layer: 10
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159,9 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25eed7518f65e54ba4f7aa594b07109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempColour: Default
-  baseColour: Default
-  finalColour: {r: 0, g: 0, b: 0, a: 0}
+  player: {fileID: 0}
 --- !u!114 &5337548821681868049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,6 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9788e5dcf9856d44a36d8dd5ff36165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!114 &4979982511703273590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,3 +185,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b69532239f0b46f48b3130489d41b251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}

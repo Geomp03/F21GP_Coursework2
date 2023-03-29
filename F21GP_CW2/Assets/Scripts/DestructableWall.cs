@@ -16,20 +16,18 @@ public class DestructableWall : MonoBehaviour
     };
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D (Collision2D collider)
     {
-        // Destroyed when player collides with it...
-        if (collision.gameObject.name.Contains("Bullet"))
+        // Destroyed when bullet collides with it...
+        if (collider.gameObject.tag == "Bullet")
         {
             Debug.Log("Wall collided with bullet");
-            string bulletCollor = ColourDict[collision.gameObject.GetComponent<SpriteRenderer>().color];
-            if (gameObject.name.Contains(bulletCollor))
+            string bulletColour = ColourDict[collider.gameObject.GetComponent<SpriteRenderer>().sharedMaterial.color];
+            if (gameObject.name.Contains(bulletColour))
             {
                 Destroy(gameObject);
-                Debug.Log("Yay");
+                // Maybe add explosion or discovery sound effect?
             }
-            else
-                Debug.Log("Condition doesn't work");
         }
     }
 }

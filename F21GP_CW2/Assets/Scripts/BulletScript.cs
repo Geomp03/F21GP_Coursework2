@@ -16,8 +16,8 @@ public class BulletScript : MonoBehaviour
         material = GetComponent<SpriteRenderer>().sharedMaterial;
         material.SetColor("_Color", player.finalColour);
 
-        Debug.Log("BulletScript:  player.tempColour - " + player.tempColour + " player.baseColour - " + player.baseColour);
-        Debug.Log("BulletScript:  player.finalColour - " + player.finalColour);
+        // Debug.Log("BulletScript:  player.tempColour - " + player.tempColour + " player.baseColour - " + player.baseColour);
+        // Debug.Log("BulletScript:  player.finalColour - " + player.finalColour);
     }
 
     private void Update()
@@ -27,7 +27,7 @@ public class BulletScript : MonoBehaviour
         
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject.tag);
+        // Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag == "Enemy")
         {
             Destroy(collision.gameObject);

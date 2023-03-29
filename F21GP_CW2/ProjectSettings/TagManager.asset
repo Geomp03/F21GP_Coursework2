@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - FireRateUp
   - Enemy
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -17,9 +18,9 @@ TagManager:
   - UI
   - Player
   - Wall
-  - Puddle
-  - Background
   - Bullet
+  - Background
+  - 
   - 
   - 
   - 
