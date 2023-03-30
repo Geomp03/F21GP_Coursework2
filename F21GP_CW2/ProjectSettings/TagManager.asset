@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Puddle
   - Wall
-  - FireRateUp
   - Enemy
   - Bullet
   layers:

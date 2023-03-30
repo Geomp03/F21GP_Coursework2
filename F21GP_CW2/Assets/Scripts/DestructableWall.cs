@@ -15,10 +15,9 @@ public class DestructableWall : MonoBehaviour
         {Color.black, "Default"}
     };
 
-
     private void OnCollisionEnter2D (Collision2D collider)
     {
-        // Destroyed when bullet collides with it...
+        // Destroyed when player bullet collides of the correct collor collides with it.
         if (collider.gameObject.tag == "Bullet")
         {
             Debug.Log("Wall collided with bullet");

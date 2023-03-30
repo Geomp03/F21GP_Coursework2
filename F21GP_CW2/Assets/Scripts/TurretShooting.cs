@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class enemy_shooting : MonoBehaviour
+public class TurretShooting : MonoBehaviour
 {
+    public Player player;
     public GameObject bullet;
+
     public Transform bulletPos;
     private float timer;
-    public float shootingRange = 10f;
-    public GameObject player;
+    [SerializeField] float shootingRange;
+    [SerializeField] float shootForce;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = FindObjectOfType<Player>();
     }
 
     // Update is called once per frame
@@ -35,7 +38,11 @@ public class enemy_shooting : MonoBehaviour
     }
     void shoot()
     {
-        Instantiate(bullet, bulletPos.position, Quaternion.identity);
+        // Instantiate bullet prefab
+        GameObject enemyBullet = Instantiate(bullet, bulletPos.position, Quaternion.identity);
+
+        Rigidbody2D enemyBulletRB = enemyBullet.GetComponent<Rigidbody2D>();
+        enemyBulletRB.AddForce(Vector2.up * shootForce, ForceMode2D.Impulse);
     }
 }
 
