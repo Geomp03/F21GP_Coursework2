@@ -6,12 +6,18 @@ public class PotionScript : MonoBehaviour
 {
     public Player player;
 
-    public ControlPotionUI PotionUI;
-    public MessageDisp canvasText;
+    private ControlPotionUI PotionUI;
+    private MessageDisp canvasText;
     public IEnumerator coroutine;
 
     private string potionColour = "Default";
     private bool holdingFlask = false;
+
+    private void Start()
+    {
+        PotionUI   = FindObjectOfType<ControlPotionUI>();
+        canvasText = FindObjectOfType<MessageDisp>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

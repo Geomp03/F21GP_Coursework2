@@ -8,15 +8,12 @@ public class Player : MonoBehaviour
     private Rigidbody2D    playerRB;
     //private SpriteRenderer playerRend;
 
-    public PlayerRespawn playerRespawn;
-
-    //public EmptyFlask SpawnEmptyFlask;
-    public PotionScript potionScript;
+    private PotionScript potionScript;
+    private HealthSystem healthSystem;
+    public GameOverScreen gameOver;
 
     //public MessageDisp canvasText;
     //public IEnumerator coroutine;
-
-    public HealthSystem healthSystem;
 
     [SerializeField] float speed;
     private float DirX, DirY;
@@ -33,8 +30,9 @@ public class Player : MonoBehaviour
         // Initialise all components needed...
         playerRB   = GetComponent<Rigidbody2D>();
         //playerRend = GetComponent<SpriteRenderer>();
-
-        playerRespawn = FindObjectOfType<PlayerRespawn>();
+        potionScript  = FindObjectOfType<PotionScript>();
+        healthSystem  = FindObjectOfType<HealthSystem>();
+        //gameOver      = FindObjectOfType<GameOverScreen>();
 
         // Start with default colour and no flask
         tempColour   = "Default";
@@ -86,7 +84,7 @@ public class Player : MonoBehaviour
 
         // Check for death
         if (currentHealth == 0)
-            playerRespawn.Respawn();  // On death...
+            gameOver.InitializeGameOverScreen();
     }
 
 

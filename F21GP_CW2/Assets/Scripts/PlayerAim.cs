@@ -15,8 +15,7 @@ public class PlayerAim : MonoBehaviour
 
     public GameObject bulletPrefab;
 
-    [HideInInspector]
-    public float angle;
+    [HideInInspector] public float angle;
 
     private void Update()
     {

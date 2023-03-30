@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    public Player player;
+    private Player player;
     // public PlayerColour playerColour;
     private Material material;
     // private Color bulletColour;
@@ -13,7 +13,7 @@ public class BulletScript : MonoBehaviour
     {
         player = FindObjectOfType<Player>();
         // playerColour = FindObjectOfType<PlayerColour>();
-        material = GetComponent<SpriteRenderer>().sharedMaterial;
+        material = GetComponent<SpriteRenderer>().material;
         material.SetColor("_Color", player.finalColour);
 
         // Debug.Log("BulletScript:  player.tempColour - " + player.tempColour + " player.baseColour - " + player.baseColour);
@@ -22,7 +22,7 @@ public class BulletScript : MonoBehaviour
 
     private void Update()
     {
-        material.SetColor("_Color", player.finalColour);
+        // material.SetColor("_Color", player.finalColour);
     }
         
     void OnCollisionEnter2D(Collision2D collision)

@@ -17,6 +17,7 @@ public class PlayerRespawn : MonoBehaviour
     public void Respawn()
     {
         player.transform.position = respawnPoint.position; // Return player to the last checkpoint
+        Physics2D.SyncTransforms();
         player.currentHealth = player.maxHealth;           // Reset health points
         player.baseColour = "Default";                     // Reset base colour
     }
