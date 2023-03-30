@@ -8,24 +8,24 @@ public class Player : MonoBehaviour
     private Rigidbody2D    playerRB;
     //private SpriteRenderer playerRend;
 
-    public EmptyFlask SpawnEmptyFlask;
-    public ControlPotionUI PotionUI;
+    public PlayerRespawn playerRespawn;
 
-    public MessageDisp canvasText;
-    public IEnumerator coroutine;
+    //public EmptyFlask SpawnEmptyFlask;
+    public PotionScript potionScript;
+
+    //public MessageDisp canvasText;
+    //public IEnumerator coroutine;
 
     public HealthSystem healthSystem;
 
-    [SerializeField] float speed, shootForce;
+    [SerializeField] float speed;
     private float DirX, DirY;
     [HideInInspector] public string tempColour, baseColour, potionColour;
     [HideInInspector] public Color finalColour;
 
-
-    private bool holdingFlask;
     public int currentHealth, maxHealth;
 
-    private PlayerAim playerAim;
+    //private PlayerAim playerAim;
 
     // Start is called before the first frame update
     private void Start()
@@ -34,11 +34,11 @@ public class Player : MonoBehaviour
         playerRB   = GetComponent<Rigidbody2D>();
         //playerRend = GetComponent<SpriteRenderer>();
 
+        playerRespawn = FindObjectOfType<PlayerRespawn>();
+
         // Start with default colour and no flask
         tempColour   = "Default";
         baseColour   = "Default";
-        potionColour = "Default";
-        holdingFlask = false;
 
         // Instantiate health system
         currentHealth = maxHealth;
@@ -66,84 +66,28 @@ public class Player : MonoBehaviour
 
         // Potion mechanic
         if (Input.GetButtonDown("UseItem")) // U key
-            PotionColours();
+            potionScript.PotionColours();
     }
 
 
     // Collisions
     void OnTriggerEnter2D(Collider2D col)
     {
-        // Pickup empty flask
-        if (col.gameObject.name.Contains("EmptyFlask"))
-        {
-            holdingFlask = true;
-            PotionUI.InstPotionUI(holdingFlask);
-            Debug.Log("Holding empty flask");
-        }
-
-        else if (col.gameObject.tag == "Enemy")
+        if (col.gameObject.tag == "Enemy")
         {
             TakeDamage(1); // Lose health???
         }
-
-        else if (col.gameObject.name == "Subroom 2")
-            SpawnEmptyFlask.SpawnPotion();
     }
 
-    
-
-    // Potion Mechanic
-    private void PotionColours()
-    {
-        // When not holding an empty flask
-        if (holdingFlask == false)
-        {
-            // Warn player they're not holding any items to use (maybe add sound as well).
-            Debug.Log("Not holding an item");
-            coroutine = canvasText.UIMessages("Not holding an item to use", 2);
-            StartCoroutine(coroutine);
-        }
-
-        // When holding an empty flask
-        else if (holdingFlask == true && potionColour == "Default")
-        {
-            if (tempColour == "Default")
-            {
-                // UI message to warn player to step on a colour puddle to make potions
-                Debug.Log("Not on colour puddle");
-                coroutine = canvasText.UIMessages("Step on a colour puddle to create a potion", 2);
-                StartCoroutine(coroutine);
-            }
-            else
-            {
-                potionColour = tempColour;  // Set flask colour to whatever the temporary colour is...
-                Debug.Log("Potion colour is: " + potionColour);
-            }
-        }
-
-        // When holding a flask with a coloured potion
-        else if (holdingFlask == true && potionColour != "Default")
-        {
-            baseColour = potionColour;  // Set player base colour to whatever the potion is
-            potionColour = "Default";   // Reset potion to default ie empty the flask
-            Debug.Log("Player base colour changed to " + baseColour + " and Potion colour is back to " + potionColour);
-        }
-
-        PotionUI.InstPotionUI(holdingFlask);
-        PotionUI.SetPotionUI(potionColour);
-    }
-
-
+    // Damage & Death
     private void TakeDamage(int damage)
     {
-        currentHealth = currentHealth - 1;
+        currentHealth = currentHealth - damage;
 
         // Check for death
         if (currentHealth == 0)
-        {
-            // Death!!!
-        }
+            playerRespawn.Respawn();  // On death...
     }
 
-    
+
 }
