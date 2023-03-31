@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1737134187162786476}
   m_Layer: 0
   m_Name: EnemyBrute
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,8 +130,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   enemyGraphics: {fileID: 2442531339048604812}
-  speed: 15
-  detectionDistance: 15
+  speed: 8
+  detectionDistance: 10
 --- !u!50 &2442531339048604811
 Rigidbody2D:
   serializedVersion: 4

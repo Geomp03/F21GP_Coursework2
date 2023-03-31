@@ -34,5 +34,6 @@ public class GameOverScreen : MonoBehaviour
         SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
         Debug.Log("Quit game button");
         // Load main menu scene
+        Time.timeScale = 1; // Unfreeze game...
     }
 }

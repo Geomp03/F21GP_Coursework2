@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2442531338612936108}
   - component: {fileID: 2442531338612936107}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: gun_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 2442531339048604810}
   - component: {fileID: 2442531339048604811}
   - component: {fileID: 1737134187162786476}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: EnemyShooter
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ MonoBehaviour:
   player: {fileID: 0}
   enemyGraphics: {fileID: 2442531339048604812}
   speed: 5
-  detectionDistance: 10
+  detectionDistance: 15
 --- !u!50 &2442531339048604811
 Rigidbody2D:
   serializedVersion: 4
@@ -239,7 +239,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2442531339256414234}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: bullet position
   m_TagString: Untagged
   m_Icon: {fileID: 0}

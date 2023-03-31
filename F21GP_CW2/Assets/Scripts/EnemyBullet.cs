@@ -9,7 +9,7 @@ public class EnemyBullet : MonoBehaviour
         // Destroy bullet on contact with player and walls
         if (collision.gameObject.tag == "Player")
         {
-            Destroy(collision.gameObject);
+            Destroy(gameObject);
         }
         if (collision.gameObject.tag == "Wall")
         {

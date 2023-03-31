@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  bullet: {fileID: 0}
+  bullet: {fileID: 3734062575733241594, guid: b375086aa01458f4a94687e19b464697, type: 3}
   bulletPos: {fileID: 8904168674539914673}
   shootingRange: 15
   shootForce: 10
