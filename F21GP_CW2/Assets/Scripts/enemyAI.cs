@@ -19,6 +19,9 @@ public class EnemyAI : MonoBehaviour
     private bool reachedEndOfPath = false;
     private Transform target;
 
+    public float stopDistance = 3f; // New variable for stopping distance
+    public float minDistance = 3f; // New variable for minimum distance
+
     void Start()
     {
         player = FindObjectOfType<Player>();
@@ -33,30 +36,51 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        // make AI move
-        if (path == null)
-            return;
-        if(CurrentWaypoint >= path.vectorPath.Count)
+        // Calculate distance between enemy and player
+        float distanceToPlayer = Vector2.Distance(rb.position, target.position);
+
+        // Move away from player if too close
+        if (distanceToPlayer < minDistance)
         {
-            reachedEndOfPath = true;
-            return;
-        }
-        else
-        {
-            reachedEndOfPath = false;
+            Vector2 direction = ((Vector2)rb.position - (Vector2)target.position).normalized;
+            Vector2 force = direction * speed;
+            rb.AddForce(force);
         }
 
-        Vector2 direction = ((Vector2)path.vectorPath[CurrentWaypoint] - rb.position).normalized;
-        Vector2 force = direction * speed; //* Time.deltaTime;
-        rb.AddForce(force);
-
-        // Player detection
-        float distance = Vector2.Distance(rb.position, path.vectorPath[CurrentWaypoint]);
-        if(distance < nextWaypointDistance)
+        // Stop moving if enemy is close enough to player
+        else if (distanceToPlayer <= stopDistance)
         {
-            CurrentWaypoint++;
+            rb.velocity = Vector2.zero;
+            return;
         }
-        
+
+        // Move towards player
+        else
+        {
+            // make AI move
+            if (path == null)
+                return;
+            if (CurrentWaypoint >= path.vectorPath.Count)
+            {
+                reachedEndOfPath = true;
+                return;
+            }
+            else
+            {
+                reachedEndOfPath = false;
+            }
+
+            Vector2 direction = ((Vector2)path.vectorPath[CurrentWaypoint] - rb.position).normalized;
+            Vector2 force = direction * speed; //* Time.deltaTime;
+            rb.AddForce(force);
+
+            // Player detection
+            float distance = Vector2.Distance(rb.position, path.vectorPath[CurrentWaypoint]);
+            if (distance < nextWaypointDistance)
+            {
+                CurrentWaypoint++;
+            }
+        }
         // Make graphics rotate
         if (rb.velocity.x >= 0.01f)
         {
