@@ -13,9 +13,17 @@ public class PlayerAim : MonoBehaviour
     public float fireRate = 1f;
     private float nextFire = 0f;
 
+    [SerializeField] private AudioClip fireball;
+    private SoundEffectSource audioSource;
+
     public GameObject bulletPrefab;
 
     [HideInInspector] public float angle;
+
+    private void Awake()
+    {
+        audioSource = FindObjectOfType<SoundEffectSource>();
+    }
 
     private void Update()
     {
@@ -53,6 +61,9 @@ public class PlayerAim : MonoBehaviour
             //// Set the starting color of the bullet prefab to the players current colour
             ////SpriteRenderer bulletRend = bullet.GetComponent<SpriteRenderer>();
             ////bulletRend.color = playerRend.color;
+
+            // Play a fireball sound effect
+            audioSource.PlaySoundEffect(fireball);
         }
            
     }

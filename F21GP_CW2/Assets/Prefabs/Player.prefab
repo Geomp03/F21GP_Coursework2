@@ -138,8 +138,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 8546027432104747325}
-  PotionUI: {fileID: 0}
-  canvasText: {fileID: 0}
 --- !u!95 &4411462374164117302
 Animator:
   serializedVersion: 5
@@ -417,17 +415,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 904e962752498b54994e0300681ec15b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRespawn: {fileID: 6917036612910550126}
-  potionScript: {fileID: 8713135044759474685}
-  PotionUI: {fileID: 0}
-  healthSystem: {fileID: 0}
+  hurtClip: {fileID: 8300000, guid: 8b23b175a78d6b5458322e3a6c9905d0, type: 3}
+  deathClip: {fileID: 8300000, guid: bd8857660a16ba549b8cc522d93d9117, type: 3}
   speed: 5
   tempColour: 
   baseColour: 
   potionColour: 
   finalColour: {r: 0, g: 0, b: 0, a: 0}
   currentHealth: 0
-  maxHealth: 0
+  maxHealth: 5
 --- !u!114 &9011625777626851650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,6 +440,7 @@ MonoBehaviour:
   aimStaffEndPointPosition: {fileID: 6566127059183227656}
   shootForce: 5
   fireRate: 1
+  fireball: {fileID: 8300000, guid: a652877b012108e41871f867ada9f176, type: 3}
   bulletPrefab: {fileID: 6669619309628551147, guid: 3136cd3d373729e41a2309543e29edda, type: 3}
   angle: 0
 --- !u!114 &6917036612910550126
@@ -460,6 +457,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 8546027432104747325}
   respawnPoint: {fileID: 0}
+  respawn: {fileID: 8300000, guid: d654174ef194bd7479bf4b8d8f753318, type: 3}
+  checkpoint: {fileID: 8300000, guid: 8ff2a2d7e79f81c40ac447512f879374, type: 3}
 --- !u!50 &760336849491046774
 Rigidbody2D:
   serializedVersion: 4

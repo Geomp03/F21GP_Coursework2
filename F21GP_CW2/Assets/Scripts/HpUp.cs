@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class HpUp : MonoBehaviour
 {
-    public Player player;
+    private Player player;
+    private SoundEffectSource audioSource;
+    [SerializeField] private AudioClip HpUpClip;
 
-    private void Start()
+    private void Awake()
     {
         player = FindObjectOfType<Player>();
+        audioSource = FindObjectOfType<SoundEffectSource>();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -16,6 +19,7 @@ public class HpUp : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             player.currentHealth++;
+            audioSource.PlaySoundEffect(HpUpClip);
             Destroy(gameObject);
         }
     }

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d318f9940266a40a9506a2cc760a6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAim: {fileID: 0}
+  shootingSpeedUp: {fileID: 8300000, guid: af41810a48acd544485e21e0a5390512, type: 3}
 --- !u!212 &7098248256911436435
 SpriteRenderer:
   m_ObjectHideFlags: 0

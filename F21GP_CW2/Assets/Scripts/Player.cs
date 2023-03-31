@@ -12,6 +12,10 @@ public class Player : MonoBehaviour
     private HealthSystem healthSystem;
     public GameOverScreen gameOver;
 
+    [SerializeField] private AudioClip hurtClip, deathClip;
+    
+    private SoundEffectSource audioSource;
+
     //public MessageDisp canvasText;
     //public IEnumerator coroutine;
 
@@ -32,7 +36,8 @@ public class Player : MonoBehaviour
         //playerRend = GetComponent<SpriteRenderer>();
         potionScript  = FindObjectOfType<PotionScript>();
         healthSystem  = FindObjectOfType<HealthSystem>();
-        //gameOver      = FindObjectOfType<GameOverScreen>();
+        // gameOver      = FindObjectOfType<GameOverScreen>();
+        audioSource = FindObjectOfType<SoundEffectSource>();
 
         // Start with default colour and no flask
         tempColour   = "Default";
@@ -81,10 +86,14 @@ public class Player : MonoBehaviour
     private void TakeDamage(int damage)
     {
         currentHealth = currentHealth - damage;
+        audioSource.PlaySoundEffect(hurtClip);
 
         // Check for death
         if (currentHealth == 0)
+        {
+            audioSource.PlaySoundEffect(deathClip);
             gameOver.InitializeGameOverScreen();
+        }
     }
 
 
