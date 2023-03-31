@@ -24,27 +24,28 @@ public class PlayerAnimator : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        if (horizontalInput > 0)
-        {
-            animator.SetTrigger("Right");
-        }
-        if (horizontalInput < 0)
-        {
-            animator.SetTrigger("Left");
-        }
-
         if (horizontalInput == 0 && verticalInput == 0)
         {
             animator.SetTrigger("Down");
         }
 
-        if (verticalInput > 0)
+        else if (verticalInput > 0)
         {
             animator.SetTrigger("Up");
         }
-        if (verticalInput < 0)
+        else if (verticalInput < 0)
         {
             animator.SetTrigger("Down");
         }
+
+        else if (horizontalInput > 0)
+        {
+            animator.SetTrigger("Right");
+        }
+        else if (horizontalInput < 0)
+        {
+            animator.SetTrigger("Left");
+        }        
+
     }
 }
