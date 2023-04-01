@@ -378,6 +378,7 @@ GameObject:
   - component: {fileID: 8546027432104747325}
   - component: {fileID: 9011625777626851650}
   - component: {fileID: 6917036612910550126}
+  - component: {fileID: 8538592127837894311}
   - component: {fileID: 760336849491046774}
   m_Layer: 0
   m_Name: Player
@@ -415,13 +416,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 904e962752498b54994e0300681ec15b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hurtClip: {fileID: 8300000, guid: 8b23b175a78d6b5458322e3a6c9905d0, type: 3}
-  deathClip: {fileID: 8300000, guid: bd8857660a16ba549b8cc522d93d9117, type: 3}
+  gameOver: {fileID: 0}
   speed: 5
   tempColour: 
   baseColour: 
   potionColour: 
   finalColour: {r: 0, g: 0, b: 0, a: 0}
+  hurtClip: {fileID: 8300000, guid: 8b23b175a78d6b5458322e3a6c9905d0, type: 3}
+  deathClip: {fileID: 8300000, guid: bd8857660a16ba549b8cc522d93d9117, type: 3}
   currentHealth: 0
   maxHealth: 5
 --- !u!114 &9011625777626851650
@@ -456,9 +458,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 8546027432104747325}
-  respawnPoint: {fileID: 0}
   respawn: {fileID: 8300000, guid: d654174ef194bd7479bf4b8d8f753318, type: 3}
   checkpoint: {fileID: 8300000, guid: 8ff2a2d7e79f81c40ac447512f879374, type: 3}
+--- !u!114 &8538592127837894311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8546027432104747324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d274c80f1abeddd4faacf840ad254d1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 8546027432104747325}
+  doorUnlocked: {fileID: 8300000, guid: 24d73765699ce3e46bb23cabc3a46494, type: 3}
+  doorLocked: {fileID: 8300000, guid: e16232650cdc97140b5c49159baed375, type: 3}
+  holdingKey: 0
 --- !u!50 &760336849491046774
 Rigidbody2D:
   serializedVersion: 4

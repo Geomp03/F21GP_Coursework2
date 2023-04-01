@@ -10,19 +10,17 @@ public class Player : MonoBehaviour
 
     private PotionScript potionScript;
     private HealthSystem healthSystem;
-    public GameOverScreen gameOver;
-
-    [SerializeField] private AudioClip hurtClip, deathClip;
-    
+    public  GameOverScreen gameOver;
     private SoundEffectSource audioSource;
-
-    //public MessageDisp canvasText;
-    //public IEnumerator coroutine;
 
     [SerializeField] float speed;
     private float DirX, DirY;
+
+
     [HideInInspector] public string tempColour, baseColour, potionColour;
     [HideInInspector] public Color finalColour;
+
+    [SerializeField] private AudioClip hurtClip, deathClip;
 
     public int currentHealth, maxHealth;
 
@@ -77,9 +75,7 @@ public class Player : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Enemy")
-        {
             TakeDamage(1); // Lose health???
-        }
     }
 
     // Damage & Death
