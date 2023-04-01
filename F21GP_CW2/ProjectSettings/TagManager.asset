@@ -42,6 +42,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Outline
+    uniqueID: 3099267243
+    locked: 0
+  - name: Floor
+    uniqueID: 1292012249
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
