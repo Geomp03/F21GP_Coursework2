@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EmptyFlask : MonoBehaviour
+public class ItemPickUp : MonoBehaviour
 {
-    [SerializeField] private AudioClip pickUpFlask;
+    [SerializeField] private AudioClip equip;
     private SoundEffectSource audioSource;
 
     private void Awake()
@@ -17,12 +17,12 @@ public class EmptyFlask : MonoBehaviour
         // Destroyed when player collides with it...
         if (collision.gameObject.tag == "Player")
         {
-            audioSource.PlaySoundEffect(pickUpFlask);
+            audioSource.PlaySoundEffect(equip);
             Destroy(gameObject);
         }
     }
 
-    public void SpawnPotion()
+    public void SpawnItem()
     {
         gameObject.SetActive(true);
     }
