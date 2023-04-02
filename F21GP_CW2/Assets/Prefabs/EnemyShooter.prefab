@@ -182,7 +182,9 @@ MonoBehaviour:
   player: {fileID: 0}
   enemyGraphics: {fileID: 2442531339048604812}
   speed: 5
-  detectionDistance: 15
+  detectionDistance: 25
+  stopDistance: 3
+  minDistance: 3
 --- !u!50 &2442531339048604811
 Rigidbody2D:
   serializedVersion: 4

@@ -78,6 +78,12 @@ public class Player : MonoBehaviour
             TakeDamage(1); // Lose health???
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+            TakeDamage(1); // Lose health???
+    }
+
     // Damage & Death
     private void TakeDamage(int damage)
     {

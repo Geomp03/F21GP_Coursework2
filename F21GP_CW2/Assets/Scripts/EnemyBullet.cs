@@ -13,6 +13,8 @@ public class EnemyBullet : MonoBehaviour
         }
         if (collision.gameObject.tag == "Wall")
         {
+            if (collision.gameObject.name.Contains("Pink"))
+                Destroy(collision.gameObject);
             Destroy(gameObject);
         }
     }

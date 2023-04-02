@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour
     public void GameButton()
     {
         audioSource.PlaySoundEffect(uiButton);
-        SceneManager.LoadScene("Room_1", LoadSceneMode.Single);
+        SceneManager.LoadScene("GameMap", LoadSceneMode.Single);
         // SceneManager.LoadScene("Dungeon", LoadSceneMode.Single);
     }
 

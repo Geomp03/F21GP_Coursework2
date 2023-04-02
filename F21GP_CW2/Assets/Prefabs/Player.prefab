@@ -417,7 +417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOver: {fileID: 0}
-  speed: 5
+  speed: 7
   tempColour: 
   baseColour: 
   potionColour: 
@@ -440,7 +440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aimTransform: {fileID: 610979732216535595}
   aimStaffEndPointPosition: {fileID: 6566127059183227656}
-  shootForce: 5
+  shootForce: 8
   fireRate: 1
   fireball: {fileID: 8300000, guid: a652877b012108e41871f867ada9f176, type: 3}
   bulletPrefab: {fileID: 6669619309628551147, guid: 3136cd3d373729e41a2309543e29edda, type: 3}

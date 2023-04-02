@@ -40,7 +40,7 @@ public class EnemyAI : MonoBehaviour
         float distanceToPlayer = Vector2.Distance(rb.position, target.position);
 
         // Move away from player if too close
-        if (distanceToPlayer < minDistance)
+        if (distanceToPlayer < minDistance && name.Contains("Shooter"))
         {
             Vector2 direction = ((Vector2)rb.position - (Vector2)target.position).normalized;
             Vector2 force = direction * speed;
@@ -48,7 +48,7 @@ public class EnemyAI : MonoBehaviour
         }
 
         // Stop moving if enemy is close enough to player
-        else if (distanceToPlayer <= stopDistance)
+        else if (distanceToPlayer <= stopDistance && name.Contains("Shooter"))
         {
             rb.velocity = Vector2.zero;
             return;

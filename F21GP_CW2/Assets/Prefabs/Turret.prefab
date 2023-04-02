@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 8021751074047204057}
   - component: {fileID: 3126076120653209479}
   - component: {fileID: 3465256726082958248}
+  - component: {fileID: 1902897854999973241}
   - component: {fileID: 5656934412697495568}
   m_Layer: 0
   m_Name: Turret
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,8 +103,21 @@ MonoBehaviour:
   player: {fileID: 0}
   bullet: {fileID: 3734062575733241594, guid: b375086aa01458f4a94687e19b464697, type: 3}
   bulletPos: {fileID: 8904168674539914673}
-  shootingRange: 15
+  shootingRange: 20
   shootForce: 10
+--- !u!114 &1902897854999973241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202113033803961227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e84e6af539e7bb4c9122ffb3880dffb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 15
 --- !u!61 &5656934412697495568
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -154,7 +168,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7070352318791333985}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
