@@ -1,6 +1,7 @@
 using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
@@ -10,6 +11,7 @@ public class EnemyAI : MonoBehaviour
     private Seeker seeker;
     private Rigidbody2D rb;
     private Path path;
+    private Animator animator;
 
     [SerializeField] float speed;
     [SerializeField] float detectionDistance;
@@ -28,8 +30,9 @@ public class EnemyAI : MonoBehaviour
         target = player.transform;
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        animator= GetComponent<Animator>();
         InvokeRepeating("UpdatePath", 0f, 0.5f);
-       // seeker.StartPath(rb.position, target.position, OnPathComplete);
+        //seeker.StartPath(rb.position, target.position, OnPathComplete);
     }
 
 
@@ -74,22 +77,25 @@ public class EnemyAI : MonoBehaviour
             Vector2 force = direction * speed; //* Time.deltaTime;
             rb.AddForce(force);
 
+            // Graphics walk animation
+            bool enemyHasSpeed = Mathf.Abs(rb.velocity.x) > Mathf.Epsilon;
+            animator.SetBool("isWalking", enemyHasSpeed);
+            // Make graphics rotate
+            if (enemyHasSpeed)
+            {
+                enemyGraphics.localScale = new Vector2(Mathf.Sign(rb.velocity.x), 1f);
+            }
+
             // Player detection
             float distance = Vector2.Distance(rb.position, path.vectorPath[CurrentWaypoint]);
             if (distance < nextWaypointDistance)
             {
                 CurrentWaypoint++;
             }
+
+
         }
-        // Make graphics rotate
-        if (rb.velocity.x >= 0.01f)
-        {
-            enemyGraphics.localScale = new Vector3(-1f, 1f, 1f);
-        }
-        else if (rb.velocity.x <= -0.01f)
-        {
-            enemyGraphics.localScale = new Vector3(1f, 1f, 1f);
-        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
