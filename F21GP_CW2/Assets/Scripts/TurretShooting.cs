@@ -36,13 +36,22 @@ public class TurretShooting : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Bullet")
+            Destroy(gameObject);
+    }
+
     void shoot()
     {
         // Instantiate bullet prefab
         GameObject enemyBullet = Instantiate(bullet, bulletPos.position, Quaternion.identity);
 
+        Vector3 shootdir = bulletPos.position - transform.position;
+
         Rigidbody2D enemyBulletRB = enemyBullet.GetComponent<Rigidbody2D>();
-        enemyBulletRB.AddForce(Vector2.up * shootForce, ForceMode2D.Impulse);
+        enemyBulletRB.AddForce(shootdir * shootForce, ForceMode2D.Impulse);
     }
 }
 
