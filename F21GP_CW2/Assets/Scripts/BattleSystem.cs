@@ -7,30 +7,25 @@ public class BattleSystem : MonoBehaviour
     private enum State
     {
         Idle,
-        Active,
+        Active
     }
 
     public GameObject[] enemyPrefabs;
     [SerializeField] private List<Transform> spawnPoints;
-    //[SerializeField] private ColliderTrigger colliderTrigger;
-    [SerializeField] private ColliderTrigger[] colliderTriggers;
+    [SerializeField] private ColliderTrigger colliderTrigger;
+    //[SerializeField] private ColliderTrigger[] colliderTriggers;
 
     private State state;
 
     private void Awake()
     {
         state = State.Idle;
-        colliderTriggers = FindObjectsOfType<ColliderTrigger>();
     }
 
 
     private void Start()
     {
-        
-        foreach (ColliderTrigger trigger in colliderTriggers)
-        {
-            trigger.OnPlayerEnterTrigger += (sender, args) => StartBattle();
-        }
+        colliderTrigger.OnPlayerEnterTrigger += ColliderTrigger_OnPlayerEnterTrigger;
     }
 
 
@@ -38,13 +33,8 @@ public class BattleSystem : MonoBehaviour
     {
         if (state == State.Idle)
         {
-            ColliderTrigger colliderTrigger = sender as ColliderTrigger;
-
-            if (colliderTrigger != null)
-            {
-                StartBattle();
-                colliderTrigger.OnPlayerEnterTrigger -= ColliderTrigger_OnPlayerEnterTrigger;
-            }
+            StartBattle();
+            colliderTrigger.OnPlayerEnterTrigger -= ColliderTrigger_OnPlayerEnterTrigger;
         }
     }
 
@@ -55,7 +45,7 @@ public class BattleSystem : MonoBehaviour
 
         FindSpawnPoints();
         Spawn(spawnPoints);
-        state = State.Active;
+        //state = State.Active;
     }
 
 
@@ -63,21 +53,22 @@ public class BattleSystem : MonoBehaviour
     //Randomly spawn enemies in a random spawn point.
     private void Spawn(List<Transform> spawnPoints)
     {
-        foreach(Transform transform in spawnPoints)
+        Debug.Log("Trying to spawn...");
+        foreach (Transform transform in spawnPoints)
         {
-            var x = Random.Range(0, spawnPoints.Count - 1);
-            var y = Random.Range(0, enemyPrefabs.Length - 1);
-
-            Instantiate(enemyPrefabs[y], spawnPoints[x]);
-
+            Debug.Log("Spawning enemy!");
+            var y = Random.Range(0, enemyPrefabs.Length);
+            Instantiate(enemyPrefabs[y], transform.position, transform.rotation);
         }
     }
 
 
 
+
     private void FindSpawnPoints()
     {
-        spawnPoints.Clear(); // clear the list before adding new transforms
+        Debug.Log("Finding spawn points...");
+        //spawnPoints.Clear(); // clear the list before adding new transforms
 
         // find all game objects with the "EnemySpawn" tag
         GameObject[] spawnPointObjects = GameObject.FindGameObjectsWithTag("EnemySpawn");
@@ -86,6 +77,7 @@ public class BattleSystem : MonoBehaviour
         foreach (GameObject spawnPointObject in spawnPointObjects)
         {
             Transform spawnPointTransform = spawnPointObject.transform;
+            Debug.Log("In foreach loop, adding spawnpointobject in spawnpoints");
             spawnPoints.Add(spawnPointTransform);
         }
     }
