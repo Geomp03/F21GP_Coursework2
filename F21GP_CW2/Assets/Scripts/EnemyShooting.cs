@@ -10,6 +10,8 @@ public class EnemyShooting : MonoBehaviour
     public Transform bulletPos;
     private SoundEffectSource audioSource;
 
+    private Color bulletColor = new Color(1f, 1f, 1f);
+
     [SerializeField] float shootForce = 10f;
     [SerializeField] float shootingRange = 10f;
     private float timer;
@@ -44,6 +46,10 @@ public class EnemyShooting : MonoBehaviour
     {
         // Instantiate bullet prefab
         GameObject enemyBullet = Instantiate(enemyBulletPrefab, bulletPos.position, Quaternion.identity);
+
+        // Get the renderer component of the bullet and set its color
+        Renderer bulletRenderer = enemyBullet.GetComponent<Renderer>();
+        bulletRenderer.material.SetColor("_Color", bulletColor);
 
         // Create a direction vector from the enemy to the player
         Vector3 direction = player.transform.position - bulletPos.transform.position;

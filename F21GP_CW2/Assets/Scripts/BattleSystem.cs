@@ -12,58 +12,74 @@ public class BattleSystem : MonoBehaviour
 
     public GameObject[] enemyPrefabs;
     [SerializeField] private List<Transform> spawnPoints;
-    [SerializeField] private ColliderTrigger colliderTrigger;
+    //[SerializeField] private ColliderTrigger colliderTrigger;
+    [SerializeField] private ColliderTrigger[] colliderTriggers;
 
     private State state;
 
     private void Awake()
     {
         state = State.Idle;
+        colliderTriggers = FindObjectsOfType<ColliderTrigger>();
     }
+
 
     private void Start()
     {
-        colliderTrigger.OnPlayerEnterTrigger += ColliderTrigger_OnPlayerEnterTrigger;
+        
+        foreach (ColliderTrigger trigger in colliderTriggers)
+        {
+            trigger.OnPlayerEnterTrigger += (sender, args) => StartBattle();
+        }
     }
+
 
     private void ColliderTrigger_OnPlayerEnterTrigger(object sender, System.EventArgs e)
     {
-        if(state == State.Idle)
+        if (state == State.Idle)
         {
-            StartBattle();
-            colliderTrigger.OnPlayerEnterTrigger -= ColliderTrigger_OnPlayerEnterTrigger;
+            ColliderTrigger colliderTrigger = sender as ColliderTrigger;
+
+            if (colliderTrigger != null)
+            {
+                StartBattle();
+                colliderTrigger.OnPlayerEnterTrigger -= ColliderTrigger_OnPlayerEnterTrigger;
+            }
         }
-        
     }
+
 
     private void StartBattle()
     {
         Debug.Log("Start Battle");
 
-        Spawn();
+        FindSpawnPoints();
+        Spawn(spawnPoints);
         state = State.Active;
     }
 
+
+
     //Randomly spawn enemies in a random spawn point.
-    private void Spawn()
+    private void Spawn(List<Transform> spawnPoints)
     {
-        FindSpawnPoints();
-        for (int i = 0; i < spawnPoints.Count; i++)
+        foreach(Transform transform in spawnPoints)
         {
             var x = Random.Range(0, spawnPoints.Count - 1);
             var y = Random.Range(0, enemyPrefabs.Length - 1);
 
-            var enemy = Instantiate(enemyPrefabs[y], spawnPoints[x]);
+            Instantiate(enemyPrefabs[y], spawnPoints[x]);
 
-            spawnPoints.RemoveAt(x);
         }
     }
+
+
 
     private void FindSpawnPoints()
     {
         spawnPoints.Clear(); // clear the list before adding new transforms
 
-        // find all game objects with the "SpawnPoint" tag
+        // find all game objects with the "EnemySpawn" tag
         GameObject[] spawnPointObjects = GameObject.FindGameObjectsWithTag("EnemySpawn");
 
         // get the transform component of each spawn point and add it to the list
