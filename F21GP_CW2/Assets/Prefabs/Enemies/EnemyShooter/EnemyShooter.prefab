@@ -48,7 +48,7 @@ MonoBehaviour:
   player: {fileID: 0}
   enemyBulletPrefab: {fileID: 3734062575733241594, guid: b375086aa01458f4a94687e19b464697, type: 3}
   bulletPos: {fileID: 2442531339256414234}
-  shootForce: 5
+  shootForce: 4
   shootingRange: 15
   enemyShotSFX: {fileID: 8300000, guid: 6d6f680564c29c24fb6ef4f22fcbef91, type: 3}
 --- !u!1 &2442531339048604848
