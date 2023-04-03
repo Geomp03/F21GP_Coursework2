@@ -3,7 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Puddle
+  - Wall
+  - Enemy
+  - Bullet
+  - FireRateUp
+  - EnemySpawn
+  - BossSpawn
+  - BossEnemySpawn
   layers:
   - Default
   - TransparentFX
@@ -11,10 +19,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Wall
+  - Bullet
+  - Background
   - 
   - 
   - 
@@ -38,6 +46,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Outline
+    uniqueID: 3099267243
+    locked: 0
+  - name: Floor
+    uniqueID: 1292012249
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 2751125949
+    locked: 0
+  - name: UI Canvas
+    uniqueID: 1412216627
     locked: 0
