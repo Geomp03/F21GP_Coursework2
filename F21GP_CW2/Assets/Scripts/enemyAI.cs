@@ -6,12 +6,28 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+
     public Player player;
+
+    //Enemy attributes
     public Transform enemyGraphics;
     private Seeker seeker;
     private Rigidbody2D rb;
     private Path path;
     private Animator animator;
+    private Material material;
+
+    // Costum Colours Used
+    
+    private Color CostumPurple = new Color(0.6823530f, 0.0784314f, 0.9686275f);
+
+    private Color[] customColors = new Color[]
+    {
+        new Color(0.1921569f, 0.3647059f, 0.9019608f), //Blue
+        new Color(0.9372550f, 0.2470588f, 0.2509804f), //Red
+        new Color(0.9607844f, 0.8705883f, 0.1960784f), //Yellow
+   
+    };
 
     [SerializeField] float speed;
     [SerializeField] float detectionDistance;
@@ -27,13 +43,21 @@ public class EnemyAI : MonoBehaviour
     public float stopDistance = 3f; // New variable for stopping distance
     public float minDistance = 3f; // New variable for minimum distance
 
-    void Start()
+    private void Awake()
     {
         player = FindObjectOfType<Player>();
         target = player.transform;
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
-        animator= GetComponent<Animator>();
+        animator = GetComponent<Animator>();
+        material = GetComponent<SpriteRenderer>().material;
+    }
+    void Start()
+    {
+        //Spawn enemy with random material color
+        int randomIndex = Random.Range(0, customColors.Length);
+        material.SetColor("_Color", customColors[randomIndex]);
+
         InvokeRepeating("UpdatePath", 0f, 0.5f);
         //seeker.StartPath(rb.position, target.position, OnPathComplete);
         audioSource = FindObjectOfType<SoundEffectSource>();
