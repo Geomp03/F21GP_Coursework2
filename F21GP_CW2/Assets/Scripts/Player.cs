@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
         // Start with default colour and no flask
         tempColour   = "Default";
         baseColour   = "Default";
+        potionColour = "Default";
 
         // Instantiate health system
         currentHealth = maxHealth;
