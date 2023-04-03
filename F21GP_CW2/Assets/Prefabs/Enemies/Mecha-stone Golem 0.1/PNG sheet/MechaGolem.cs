@@ -106,11 +106,4 @@ public class MechaGolem : MonoBehaviour
         attackRoutine = null;
     }
 
-    // Call this method when the boss takes damage
-    public void TakeDamage(int damage, Color playerColor)
-    {
-        if (playerColor == currentColor)
-        {
-            currentHealth -= damage;
-
-            // Check for boss defeat
+}
