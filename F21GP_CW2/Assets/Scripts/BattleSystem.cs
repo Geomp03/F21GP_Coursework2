@@ -29,6 +29,8 @@ public class BattleSystem : MonoBehaviour
     }
 
 
+
+
     private void ColliderTrigger_OnPlayerEnterTrigger(object sender, System.EventArgs e)
     {
         if (state == State.Idle)
