@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DestructableWall : MonoBehaviour
 {
-    Dictionary<Color, string> ColourDict = new Dictionary<Color, string>()
+    public Dictionary<Color, string> ColourDict = new Dictionary<Color, string>()
     {
         {new Color(0.1921569f, 0.3647059f, 0.9019608f), "Blue"},
         {new Color(0.9372550f, 0.2470588f, 0.2509804f), "Red"},
@@ -15,6 +15,7 @@ public class DestructableWall : MonoBehaviour
         {new Color(0.7058824f, 0.2274510f, 0.6078432f), "Pink"},
         {Color.black, "Default"}
     };
+    [HideInInspector] public string bulletColour;
 
     private void OnTriggerEnter2D (Collider2D collider)
     {
@@ -22,7 +23,7 @@ public class DestructableWall : MonoBehaviour
         if (collider.gameObject.tag == "Bullet")
         {
             Debug.Log("Wall collided with bullet");
-            string bulletColour = ColourDict[collider.gameObject.GetComponent<SpriteRenderer>().sharedMaterial.color];
+            bulletColour = ColourDict[collider.gameObject.GetComponent<SpriteRenderer>().sharedMaterial.color];
             if (gameObject.name.Contains(bulletColour))
             {
                 Destroy(gameObject);

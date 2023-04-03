@@ -7,6 +7,8 @@ public class BulletScript : MonoBehaviour
     private Player player;
     private Material material;
 
+    private DestructableWall colors;
+
     private void Awake()
     {
         player = FindObjectOfType<Player>();
@@ -22,7 +24,19 @@ public class BulletScript : MonoBehaviour
         // Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag == "Enemy")
         {
-            Destroy(gameObject);
+
+            Debug.Log("Bullet collided with enemy");
+                
+            if (this.material.color == collision.gameObject.GetComponent<SpriteRenderer>().material.color)
+            {
+                Destroy(collision.gameObject);
+                Destroy(this, 0.1f);
+            }
+            //else
+            //{
+            //    Destroy(this, 0.1f);
+            //}
+          
         }
         if (collision.gameObject.tag == "Wall")
         {

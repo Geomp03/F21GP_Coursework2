@@ -102,14 +102,14 @@ public class EnemyAI : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Bullet")
-        {
-            audioSource.PlaySoundEffect(enemyDeathClip);
-            Destroy(gameObject);
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.tag == "Bullet")
+    //    {
+    //        audioSource.PlaySoundEffect(enemyDeathClip);
+    //        Destroy(gameObject);
+    //    }
+    //}
 
     private void UpdatePath()
     {
