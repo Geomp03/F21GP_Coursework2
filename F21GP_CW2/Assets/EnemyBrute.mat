@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Staff
+  m_Name: EnemyBrute
   m_Shader: {fileID: -6465566751694194690, guid: ff6c98b1f9c49f8478c67a3052b45847, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -25,7 +25,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 3aa1cb26afcdc244bb3a95c193575ecb, type: 3}
+        m_Texture: {fileID: 2800000, guid: d31992967f46e184db02be8d2569c9ec, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -52,9 +52,9 @@ Material:
     m_Floats:
     - _Alpha_Threshold: 0.5
     - _EnableExternalAlpha: 0
-    - _Thickness: 0.03
+    - _Thickness: 0.005
     m_Colors:
-    - _Color: {r: 0.937255, g: 0.2470588, b: 0.2509804, a: 1}
+    - _Color: {r: 1, g: 0, b: 0, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
