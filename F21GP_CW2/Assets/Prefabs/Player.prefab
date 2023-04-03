@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 4411462374164117302}
   - component: {fileID: 4774877938556339481}
   - component: {fileID: 7661360312468469321}
+  - component: {fileID: 7018843831522954345}
   m_Layer: 0
   m_Name: WizardBody
   m_TagString: Untagged
@@ -236,6 +237,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9872482, y: 0.2971887}
   m_EdgeRadius: 0
+--- !u!70 &7018843831522954345
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7061032433646345831}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0062103258, y: 1.2957293}
+  m_Size: {x: 0.9881513, y: 2.1365523}
+  m_Direction: 0
 --- !u!1 &8546027431307117881
 GameObject:
   m_ObjectHideFlags: 0
