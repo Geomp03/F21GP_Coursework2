@@ -50,6 +50,7 @@ MonoBehaviour:
   bulletPos: {fileID: 2442531339256414234}
   shootForce: 5
   shootingRange: 15
+  enemyShotSFX: {fileID: 8300000, guid: 6d6f680564c29c24fb6ef4f22fcbef91, type: 3}
 --- !u!1 &2442531339048604848
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,6 +185,7 @@ MonoBehaviour:
   enemyGraphics: {fileID: 2442531339048604812}
   speed: 5
   detectionDistance: 15
+  enemyDeathClip: {fileID: 8300000, guid: 4b132e578ac27514094756883f193155, type: 3}
   stopDistance: 3
   minDistance: 3
 --- !u!50 &2442531339048604811

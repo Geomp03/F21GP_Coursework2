@@ -8,14 +8,18 @@ public class EnemyShooting : MonoBehaviour
     public Player player;
     public GameObject enemyBulletPrefab;
     public Transform bulletPos;
+    private SoundEffectSource audioSource;
 
     [SerializeField] float shootForce = 10f;
     [SerializeField] float shootingRange = 10f;
     private float timer;
 
+    [SerializeField] private AudioClip enemyShotSFX;
+
     private void Start()
     {
         player = FindObjectOfType<Player>();
+        audioSource = FindObjectOfType<SoundEffectSource>();
     }
 
     // Update is called once per frame
@@ -51,6 +55,9 @@ public class EnemyShooting : MonoBehaviour
         // Rotate bullet accordingly...
         float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
         enemyBullet.transform.rotation = Quaternion.Euler(0, 0, rot);
+
+        // Shooting SFX
+        audioSource.PlaySoundEffect(enemyShotSFX);
     }
 }
 

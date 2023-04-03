@@ -32,9 +32,9 @@ public class Player : MonoBehaviour
         // Initialise all components needed...
         playerRB   = GetComponent<Rigidbody2D>();
         //playerRend = GetComponent<SpriteRenderer>();
-        potionScript  = FindObjectOfType<PotionScript>();
-        healthSystem  = FindObjectOfType<HealthSystem>();
-        // gameOver      = FindObjectOfType<GameOverScreen>();
+        potionScript = FindObjectOfType<PotionScript>();
+        healthSystem = FindObjectOfType<HealthSystem>();
+        // gameOver = FindObjectOfType<GameOverScreen>();
         audioSource = FindObjectOfType<SoundEffectSource>();
 
         // Start with default colour and no flask

@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2442531339048604812}
   - component: {fileID: 4384624616996676065}
+  - component: {fileID: 4299738041768230958}
   - component: {fileID: 2442531339048604813}
   - component: {fileID: 2442531339048604811}
   - component: {fileID: 1737134187162786476}
-  - component: {fileID: 4299738041768230958}
   - component: {fileID: 2350444171860635983}
   m_Layer: 0
   m_Name: EnemyBrute
@@ -89,6 +89,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4299738041768230958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2442531339048604848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80999b79146c0cd40b7c6502098c6046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 8546027432104747325, guid: 05976623d3cd08a4abdb52e1f498d34d, type: 3}
+  enemyGraphics: {fileID: 2442531339048604812}
+  speed: 5
+  detectionDistance: 15
+  enemyDeathClip: {fileID: 8300000, guid: 4b132e578ac27514094756883f193155, type: 3}
+  stopDistance: 3
+  minDistance: 3
 --- !u!114 &2442531339048604813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,24 +183,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9770916, y: 1.6007597}
   m_EdgeRadius: 0
---- !u!114 &4299738041768230958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2442531339048604848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80999b79146c0cd40b7c6502098c6046, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 8546027432104747325, guid: 05976623d3cd08a4abdb52e1f498d34d, type: 3}
-  enemyGraphics: {fileID: 2442531339048604812}
-  speed: 5
-  detectionDistance: 15
-  stopDistance: 3
-  minDistance: 3
 --- !u!95 &2350444171860635983
 Animator:
   serializedVersion: 5

@@ -15,6 +15,9 @@ public class EnemyAI : MonoBehaviour
 
     [SerializeField] float speed;
     [SerializeField] float detectionDistance;
+    
+    private SoundEffectSource audioSource;
+    [SerializeField] private AudioClip enemyDeathClip;
 
     private float nextWaypointDistance = 1f;
     private int CurrentWaypoint = 0;
@@ -33,6 +36,7 @@ public class EnemyAI : MonoBehaviour
         animator= GetComponent<Animator>();
         InvokeRepeating("UpdatePath", 0f, 0.5f);
         //seeker.StartPath(rb.position, target.position, OnPathComplete);
+        audioSource = FindObjectOfType<SoundEffectSource>();
     }
 
 
@@ -101,7 +105,10 @@ public class EnemyAI : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Bullet")
+        {
+            audioSource.PlaySoundEffect(enemyDeathClip);
             Destroy(gameObject);
+        }
     }
 
     private void UpdatePath()
