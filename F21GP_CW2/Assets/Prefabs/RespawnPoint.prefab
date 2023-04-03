@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8384089095565524564}
   - component: {fileID: 8384089095565524565}
+  - component: {fileID: 1586981972589202281}
   - component: {fileID: 8384089095565524566}
   m_Layer: 0
   m_Name: RespawnPoint
@@ -85,6 +86,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1586981972589202281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8384089095565524567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e555b517eb6fd146b3091d8b506da42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossMusic: {fileID: 8300000, guid: 66b315e37ecf3f942bc1cb0e59c775b7, type: 3}
 --- !u!61 &8384089095565524566
 BoxCollider2D:
   m_ObjectHideFlags: 0
